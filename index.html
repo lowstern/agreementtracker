@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agreement Tracker MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>Agreement Tracker MVP</h1>
+        <p>Investor directory, agreements workspace, and fee logic view.</p>
+        <p class="mock-banner">
+          Mock data is preloaded. Click <strong>Clear mock data</strong> to start clean.
+        </p>
+      </div>
+      <div class="header-actions">
+        <button id="resetData" class="secondary">Reset demo data</button>
+        <button id="clearMockData" class="danger">Clear mock data</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="investors">Investor Directory</button>
+      <button class="tab" data-tab="agreements">Agreements & Documents</button>
+      <button class="tab" data-tab="fees">Fee Logic View</button>
+    </nav>
+
+    <main>
+      <section id="investors" class="tab-panel active">
+        <div class="panel-header">
+          <h2>Investor Directory</h2>
+          <input id="investorSearch" type="search" placeholder="Search investors" />
+        </div>
+        <form id="investorForm" class="card form-grid">
+          <h3>Add investor profile</h3>
+          <label>
+            Investor name
+            <input name="name" required />
+          </label>
+          <label>
+            Investor type
+            <select name="type">
+              <option>LP</option>
+              <option>GP</option>
+              <option>Family Office</option>
+              <option>Institutional</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Commitment amount
+            <input name="commitment" type="number" step="0.01" required />
+          </label>
+          <label>
+            Currency
+            <input name="currency" value="USD" />
+          </label>
+          <label>
+            Fund
+            <input name="fund" placeholder="Mock Fund I" />
+          </label>
+          <label>
+            Relationship notes
+            <input name="relationship" placeholder="Affiliate / Co-invest / Side letter" />
+          </label>
+          <label class="full-width">
+            Internal notes
+            <textarea name="notes" rows="3"></textarea>
+          </label>
+          <button type="submit">Add investor</button>
+        </form>
+
+        <div class="card">
+          <h3>Profiles & commitments</h3>
+          <div id="investorList"></div>
+        </div>
+      </section>
+
+      <section id="agreements" class="tab-panel">
+        <div class="panel-header">
+          <h2>Agreements & Documents</h2>
+          <p class="muted">Create agreements, then add multiple clauses underneath.</p>
+        </div>
+        <div class="agreements-grid">
+          <div class="stack">
+            <form id="agreementForm" class="card form-grid">
+              <h3>Create agreement</h3>
+              <label>
+                Agreement name
+                <input name="title" required />
+              </label>
+              <label>
+                Investor
+                <input name="investor" placeholder="Mock Capital LP" required />
+              </label>
+              <label>
+                Fund / vehicle
+                <input name="fund" placeholder="Mock Fund I" />
+              </label>
+              <label>
+                Document type
+                <select name="docType">
+                  <option>Side Letter</option>
+                  <option>Subscription Agreement</option>
+                  <option>Amendment</option>
+                  <option>Fee Schedule</option>
+                  <option>PPM</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                Effective date
+                <input name="effectiveDate" type="date" />
+              </label>
+              <label>
+                Status
+                <select name="status">
+                  <option>Draft</option>
+                  <option selected>Active</option>
+                  <option>Superseded</option>
+                </select>
+              </label>
+              <label>
+                Parent agreement (optional)
+                <select name="supersedesId" id="parentAgreementSelect">
+                  <option value="">None</option>
+                </select>
+              </label>
+              <label>
+                Priority (auto, editable)
+                <input name="priority" type="number" step="1" placeholder="Auto" />
+              </label>
+              <label class="full-width">
+                Upload file
+                <input name="file" type="file" />
+              </label>
+              <button type="submit">Create agreement</button>
+            </form>
+
+            <form id="clauseForm" class="card form-grid">
+              <h3>Add clause</h3>
+              <label>
+                Agreement
+                <select name="agreementId" id="agreementSelect" required>
+                  <option value="">Select agreement</option>
+                </select>
+              </label>
+              <label>
+                Clause type
+                <select name="clauseType">
+                  <option>Management Fee</option>
+                  <option>Carry</option>
+                  <option>Hurdle</option>
+                  <option>MFN</option>
+                  <option>Fee Waiver</option>
+                  <option>Expense Cap</option>
+                  <option>Step-down</option>
+                  <option>Retroactivity</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                Tags
+                <input name="tags" placeholder="tiered discount, retroactive trigger" />
+              </label>
+              <label class="full-width">
+                Clause text (provenance)
+                <textarea name="clauseText" rows="3" placeholder="Paste the clause text here"></textarea>
+              </label>
+              <label>
+                Term rate (%)
+                <input name="termRate" type="number" step="0.01" />
+              </label>
+              <label>
+                Term threshold
+                <input name="termThreshold" placeholder="Commitment >= $250M" />
+              </label>
+              <label>
+                Term discount (%)
+                <input name="termDiscount" type="number" step="0.01" />
+              </label>
+              <label class="full-width">
+                Term notes
+                <textarea name="termNotes" rows="2"></textarea>
+              </label>
+              <button type="submit">Add clause</button>
+            </form>
+
+            <div class="card">
+              <h3>Document workspace</h3>
+              <div id="agreementList"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="panel-header">
+              <div>
+                <h3>Effective terms for investor</h3>
+                <p class="muted">Latest clause wins based on date + priority.</p>
+              </div>
+              <div class="filters">
+                <select id="effectiveInvestor"></select>
+                <input id="effectiveFund" placeholder="Fund (optional)" />
+              </div>
+            </div>
+            <div id="effectiveTerms"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="fees" class="tab-panel">
+        <div class="panel-header">
+          <h2>Fee Logic View</h2>
+          <p class="muted">Structured inputs with formula representation.</p>
+        </div>
+        <div class="card scenario-grid">
+          <div>
+            <h3>Scenario toggles</h3>
+            <p class="muted">Adjust commitment to simulate fee impacts.</p>
+          </div>
+          <label>
+            Scenario commitment
+            <input id="scenarioCommitment" type="number" step="1000000" value="250000000" />
+          </label>
+          <label>
+            Currency
+            <input id="scenarioCurrency" value="USD" />
+          </label>
+        </div>
+        <form id="feeForm" class="card form-grid">
+          <h3>Add fee logic</h3>
+          <label>
+            Investor
+            <input name="investor" placeholder="Mock Capital LP" required />
+          </label>
+          <label>
+            Fund
+            <input name="fund" placeholder="Mock Fund I" required />
+          </label>
+          <label>
+            Fee type
+            <select name="feeType">
+              <option>Management Fee</option>
+              <option>Performance Fee</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Base rate (%)
+            <input name="baseRate" type="number" step="0.01" required />
+          </label>
+          <label>
+            Tier threshold
+            <input name="tierThreshold" placeholder="Commitment >= $250M" />
+          </label>
+          <label>
+            Tier threshold amount
+            <input name="tierThresholdAmount" type="number" step="1000000" placeholder="250000000" />
+          </label>
+          <label>
+            Tier rate (%)
+            <input name="tierRate" type="number" step="0.01" />
+          </label>
+          <label>
+            Discount (%)
+            <input name="discount" type="number" step="0.01" />
+          </label>
+          <label class="full-width">
+            Triggers & conditions
+            <textarea name="triggers" rows="3" placeholder="Fee drops after year 4, MFN option applies"></textarea>
+          </label>
+          <label class="full-width">
+            Source clause text (provenance)
+            <textarea name="sourceClause" rows="3" placeholder="Paste the source clause text"></textarea>
+          </label>
+          <button type="submit">Add fee logic</button>
+        </form>
+
+        <div class="card">
+          <h3>Fee formulas</h3>
+          <div id="feeList" class="fee-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <div id="provenanceModal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Source clause</h3>
+          <button id="closeModal" class="secondary">Close</button>
+        </div>
+        <pre id="modalText"></pre>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
