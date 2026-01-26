@@ -1,4 +1,7 @@
 {
-  "version": 2
+  "version": 2,
+  "buildCommand": "echo 'no build'",
+  "installCommand": "",
+  "outputDirectory": "."
 }
 
