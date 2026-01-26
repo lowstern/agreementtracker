@@ -1,4 +1,8 @@
 const STORAGE_KEY = "agreement-tracker-state";
+const API_BASE_KEY = "agreement-tracker-api-base";
+const AUTH_KEY = "agreement-tracker-auth";
+const DEMO_EMAIL = "demo@agreement-tracker.com";
+const DEMO_PASSWORD = "Demo123!";
 
 const seedState = {
   investors: [
@@ -85,6 +89,14 @@ const tabs = document.querySelectorAll(".tab");
 const panels = document.querySelectorAll(".tab-panel");
 const resetButton = document.getElementById("resetData");
 const clearMockButton = document.getElementById("clearMockData");
+const apiBaseInput = document.getElementById("apiBaseUrl");
+const saveApiBase = document.getElementById("saveApiBase");
+const signOutButton = document.getElementById("signOut");
+const loginOverlay = document.getElementById("loginOverlay");
+const loginForm = document.getElementById("loginForm");
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
+const loginError = document.getElementById("loginError");
 
 const investorForm = document.getElementById("investorForm");
 const investorList = document.getElementById("investorList");
@@ -121,6 +133,36 @@ clearMockButton.addEventListener("click", () => {
   state = structuredClone(emptyState);
   saveState(state);
   renderAll();
+});
+
+apiBaseInput.value = localStorage.getItem(API_BASE_KEY) || "";
+saveApiBase.addEventListener("click", () => {
+  const value = apiBaseInput.value.trim();
+  if (value) {
+    localStorage.setItem(API_BASE_KEY, value);
+  } else {
+    localStorage.removeItem(API_BASE_KEY);
+  }
+});
+
+signOutButton.addEventListener("click", () => {
+  localStorage.removeItem(AUTH_KEY);
+  showLogin(true);
+});
+
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const email = loginEmail.value.trim();
+  const password = loginPassword.value;
+  if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+    localStorage.setItem(AUTH_KEY, "true");
+    loginError.textContent = "";
+    loginError.classList.remove("error-text");
+    showLogin(false);
+  } else {
+    loginError.textContent = "Invalid email or password.";
+    loginError.classList.add("error-text");
+  }
 });
 
 investorForm.addEventListener("submit", (event) => {
@@ -246,6 +288,14 @@ function loadState() {
     const seeded = structuredClone(seedState);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
     return seeded;
+  }
+}
+
+function showLogin(isVisible) {
+  if (isVisible) {
+    loginOverlay.classList.remove("hidden");
+  } else {
+    loginOverlay.classList.add("hidden");
   }
 }
 
@@ -679,5 +729,6 @@ function derivePriority(docType) {
   return map[docType] || 1;
 }
 
+showLogin(localStorage.getItem(AUTH_KEY) !== "true");
 renderAll();
 

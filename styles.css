@@ -366,6 +366,11 @@ main {
   display: none;
 }
 
+.error-text {
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
 .modal-content {
   background: #ffffff;
   border-radius: 12px;
