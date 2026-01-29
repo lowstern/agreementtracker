@@ -27,7 +27,6 @@ export default function Home() {
         <div className="nav-container">
           <div className="logo">Termifi</div>
           <div className="nav-links">
-            <a href="#problem">The Problem</a>
             <a href="#solution">Solution</a>
             <a href="#platform">Platform</a>
             <a href="#" className="btn-nav" onClick={handleContactClick}>Contact Us</a>
@@ -71,31 +70,6 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="section" id="problem">
-        <div className="section-container">
-          <h2>The <span className="accent">Problem</span></h2>
-          <div className="problem-intro">
-            <p>Contract management inefficiencies create significant value leakage and operational friction across the asset management industry.</p>
-          </div>
-          <div className="problem-stats">
-            <div className="problem-stat">
-              <h3>Up to 40%</h3>
-              <p>of contract value is lost due to inefficient management</p>
-            </div>
-            <div className="problem-stat">
-              <h3>9 in 10</h3>
-              <p>contract professionals struggle to locate specific agreements</p>
-            </div>
-            <div className="problem-stat">
-              <h3>Only 11%</h3>
-              <p>of organizations rate their contract management as very effective</p>
-            </div>
-          </div>
-          <div className="problem-insight">
-            <p>Fragmented repositories, manual reviews, and repeated legal touchpoints slow distribution and increase risk.</p>
-          </div>
-        </div>
-      </section>
       
       <section className="section" style={{background: '#f8fafc'}}>
         <div className="section-container">
@@ -131,10 +105,13 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="section" style={{background: '#f8fafc'}} id="solution">
+      <section className="section" id="solution">
         <div className="section-container">
-          <h2>What We <span className="accent">Built</span></h2>
-          <p className="section-subtitle">A contract intelligence layer designed for asset managers operating at scale.</p>
+          <h2>The <span className="accent">Solution</span></h2>
+          <div className="solution-intro">
+            <p className="intro-large">Contract management inefficiencies create significant value leakage across asset management—up to 40% of contract value is lost, while 9 in 10 professionals struggle to locate agreements.</p>
+            <p className="intro-highlight">Termifi solves this with a contract intelligence layer designed for asset managers operating at scale.</p>
+          </div>
           <div className="features-grid">
             <div className="feature-card">
               <h3>Centralized Repository</h3>
