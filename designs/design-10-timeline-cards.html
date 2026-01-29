@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 10: Timeline with Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        nav {
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #666666;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        
+        .hero-simple {
+            padding: 100px 60px 80px;
+            text-align: center;
+        }
+        
+        .hero-simple h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+            letter-spacing: -2px;
+        }
+        
+        .hero-simple .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-simple p {
+            font-size: 22px;
+            color: #666666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .timeline-cards {
+            padding: 80px 60px;
+            background: #f9f9f9;
+        }
+        
+        .timeline-cards-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .vertical-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .timeline-card {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .timeline-marker {
+            flex-shrink: 0;
+            width: 100px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        
+        .marker-circle {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .card-content {
+            flex: 1;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eeeeee;
+        }
+        
+        .card-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+        
+        .card-content p {
+            font-size: 17px;
+            color: #666666;
+            line-height: 1.8;
+        }
+        
+        .benefits-section {
+            padding: 100px 60px;
+            background: #ffffff;
+        }
+        
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .benefits-header h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+        
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .benefit-number {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .benefit-label {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 600;
+        }
+        
+        .cta-gradient {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .cta-gradient h2 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        
+        .cta-gradient p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .btn-white {
+            background: #ffffff;
+            color: #667eea;
+            padding: 18px 48px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            padding: 60px;
+            background: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Agreement Tracker</div>
+        <div class="nav-links">
+            <a href="#how">How it Works</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="btn-gradient">Start Free Trial</a>
+        </div>
+    </nav>
+    
+    <section class="hero-simple">
+        <h1>LP Agreements,<br><span class="gradient-text">Simplified</span></h1>
+        <p>Extract, organize, and manage every agreement with AI-powered precision and complete source transparency</p>
+    </section>
+    
+    <section class="timeline-cards">
+        <div class="timeline-cards-container">
+            <div class="vertical-line"></div>
+            
+            <div class="timeline-card">
+                <div class="timeline-marker">
+                    <div class="marker-circle">1</div>
+                </div>
+                <div class="card-content">
+                    <h3>Upload Documents</h3>
+                    <p>Drop your agreements directly into the platform or forward them via email. We support all document formats and begin processing immediately. No manual setup required.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-card">
+                <div class="timeline-marker">
+                    <div class="marker-circle">2</div>
+                </div>
+                <div class="card-content">
+                    <h3>AI Extraction</h3>
+                    <p>Our AI reads every document and automatically extracts all terms, fees, commitments, and special provisions. Every single data point is linked back to its exact source clause.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-card">
+                <div class="timeline-marker">
+                    <div class="marker-circle">3</div>
+                </div>
+                <div class="card-content">
+                    <h3>Smart Organization</h3>
+                    <p>The system creates a structured database, resolves conflicts between documents using intelligent hierarchy rules, and organizes everything for instant access.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-card">
+                <div class="timeline-marker">
+                    <div class="marker-circle">4</div>
+                </div>
+                <div class="card-content">
+                    <h3>Instant Analysis</h3>
+                    <p>Search any term in seconds. Model fee scenarios in real-time. Track investor relationships. Access complete citation history for any data point with one click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits-section">
+        <div class="benefits-header">
+            <h2>Built for Performance</h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-number">100%</div>
+                <div class="benefit-label">Citation Coverage</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">10x</div>
+                <div class="benefit-label">Faster Lookup</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">Zero</div>
+                <div class="benefit-label">Manual Entry</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-gradient">
+        <h2>Ready to Get Started?</h2>
+        <p>Join fund managers who trust Agreement Tracker</p>
+        <a href="#" class="btn-white">Schedule Demo</a>
+    </section>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+            <a href="#">Contact</a>
+        </div>
+        <div style="color: #666666; font-size: 14px;">© 2026 Agreement Tracker</div>
+    </footer>
+</body>
+</html>

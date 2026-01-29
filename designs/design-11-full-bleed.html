@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 11: Full Bleed Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 32px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+        
+        .nav-right {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-right a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .btn-white {
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 800;
+        }
+        
+        .hero-fullbleed {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            padding: 0 80px;
+        }
+        
+        .hero-fullbleed h1 {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 40px;
+            letter-spacing: -4px;
+        }
+        
+        .hero-fullbleed p {
+            font-size: 28px;
+            color: #cccccc;
+            margin-bottom: 60px;
+            font-weight: 500;
+        }
+        
+        .btn-hero {
+            background: #ffffff;
+            color: #000000;
+            padding: 24px 60px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 18px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-dark {
+            padding: 0;
+            background: #000000;
+        }
+        
+        .feature-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        
+        .feature-block:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .feature-block:nth-child(even) .feature-content {
+            order: 2;
+        }
+        
+        .feature-block:nth-child(even) .feature-visual {
+            order: 1;
+        }
+        
+        .feature-content {
+            padding: 120px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #000000;
+        }
+        
+        .feature-number {
+            font-size: 24px;
+            color: #666666;
+            font-weight: 900;
+            margin-bottom: 24px;
+        }
+        
+        .feature-content h2 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 32px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+        
+        .feature-content p {
+            font-size: 20px;
+            color: #999999;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .feature-visual {
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666666;
+        }
+        
+        .stats-fullwidth {
+            padding: 120px 80px;
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+        }
+        
+        .stat-block h3 {
+            font-size: 96px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+        
+        .stat-block p {
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .cta-fullbleed {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #000000;
+            padding: 120px 80px;
+        }
+        
+        .cta-fullbleed h2 {
+            font-size: 88px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            letter-spacing: -3px;
+        }
+        
+        .cta-fullbleed p {
+            font-size: 24px;
+            color: #999999;
+            margin-bottom: 60px;
+        }
+        
+        footer {
+            padding: 60px 80px;
+            background: #000000;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-text {
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .footer-links a {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">AGREEMENT TRACKER</div>
+        <div class="nav-right">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#" class="btn-white">Get Started</a>
+        </div>
+    </nav>
+    
+    <section class="hero-fullbleed">
+        <div class="hero-content">
+            <h1>PRECISION<br>AT SCALE</h1>
+            <p>Enterprise agreement management built for the modern fund</p>
+            <a href="#" class="btn-hero">Request Demo</a>
+        </div>
+    </section>
+    
+    <section class="section-dark">
+        <div class="feature-block">
+            <div class="feature-content">
+                <div class="feature-number">01</div>
+                <h2>Extract Everything</h2>
+                <p>AI-powered extraction of every term, fee, and commitment. Zero manual entry. Complete source transparency.</p>
+                <p>Upload any document format and watch as our system automatically structures all data points with citations.</p>
+            </div>
+            <div class="feature-visual">Visual Placeholder</div>
+        </div>
+        
+        <div class="feature-block">
+            <div class="feature-content">
+                <div class="feature-number">02</div>
+                <h2>Resolve Conflicts</h2>
+                <p>When documents disagree, our hierarchy system knows exactly which terms apply.</p>
+                <p>Side letters override base agreements. Later amendments supersede earlier ones. The logic is built in.</p>
+            </div>
+            <div class="feature-visual">Visual Placeholder</div>
+        </div>
+        
+        <div class="feature-block">
+            <div class="feature-content">
+                <div class="feature-number">03</div>
+                <h2>Model Fees</h2>
+                <p>Calculate fees in real-time with tier structures, step-downs, and discount rules.</p>
+                <p>Model different scenarios instantly to understand financial impact across your LP base.</p>
+            </div>
+            <div class="feature-visual">Visual Placeholder</div>
+        </div>
+    </section>
+    
+    <section class="stats-fullwidth">
+        <div class="stats-grid">
+            <div class="stat-block">
+                <h3>100%</h3>
+                <p>Citation Coverage</p>
+            </div>
+            <div class="stat-block">
+                <h3>10X</h3>
+                <p>Faster Lookup</p>
+            </div>
+            <div class="stat-block">
+                <h3>ZERO</h3>
+                <p>Manual Entry</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-fullbleed">
+        <div>
+            <h2>READY TO<br>TRANSFORM?</h2>
+            <p>See Agreement Tracker in action</p>
+            <a href="#" class="btn-hero">Schedule Demo</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-text">© 2026 Agreement Tracker</div>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+        </div>
+    </footer>
+</body>
+</html>
