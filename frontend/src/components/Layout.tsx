@@ -22,7 +22,6 @@ interface LayoutProps {
   user: User;
   activeTab: TabId;
   onTabChange: (tab: TabId) => void;
-  onLogout: () => void;
   children: ReactNode;
   rightPanelOpen?: boolean;
 }
@@ -31,7 +30,7 @@ const MIN_WIDTH = 280;
 const MAX_WIDTH = 800;
 const DEFAULT_WIDTH = 420;
 
-export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTabChange, onLogout: _onLogout, children, rightPanelOpen = false }: LayoutProps) {
+export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTabChange, children, rightPanelOpen = false }: LayoutProps) {
   const [rightPanelWidth, setRightPanelWidth] = useState(DEFAULT_WIDTH);
   const [isResizing, setIsResizing] = useState(false);
 
@@ -50,6 +49,16 @@ export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTab
         className={`${styles.app} ${rightPanelOpen ? styles.threePanelOpen : ''} ${isResizing ? styles.resizing : ''}`}
         style={gridStyle}
       >
+        <div className={styles.demoBanner}>
+          <div className={styles.demoBannerContent}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <span>Demo Mode - Explore the platform with sample data</span>
+          </div>
+        </div>
         {children}
       </div>
     </RightPanelContext.Provider>
@@ -65,13 +74,11 @@ export function PanelHeader({
   searchPlaceholder, 
   searchValue, 
   onSearchChange,
-  onLogout,
   onDataChange,
 }: { 
   searchPlaceholder?: string;
   searchValue?: string;
   onSearchChange?: (value: string) => void;
-  onLogout?: () => void;
   onDataChange?: () => void;
 }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -156,19 +163,6 @@ export function PanelHeader({
                   {loading ? 'Loading...' : 'Clear All Data'}
                 </button>
               </div>
-              {onLogout && (
-                <div className={styles.menuSection}>
-                  <button 
-                    className={styles.menuItem}
-                    onClick={onLogout}
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
-                    </svg>
-                    Sign Out
-                  </button>
-                </div>
-              )}
             </div>
           )}
         </div>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
-import { Login } from './components/Login';
 import { Layout } from './components/Layout';
 import { InvestorDirectory } from './pages/InvestorDirectory';
 import { AgreementsDocuments } from './pages/AgreementsDocuments';
@@ -9,7 +8,7 @@ import { FeeLogicView } from './pages/FeeLogicView';
 import type { TabId } from './types';
 
 function App() {
-  const { user, isAuthenticated, loading, login, logout } = useAuth();
+  const { user, loading } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [rightPanelOpen, setRightPanelOpen] = useState(false);
 
@@ -34,7 +33,7 @@ function App() {
     setRightPanelOpen(false);
   };
 
-  if (loading) {
+  if (loading || !user) {
     return (
       <div style={{ 
         minHeight: '100vh', 
@@ -47,10 +46,6 @@ function App() {
         <p>Loading...</p>
       </div>
     );
-  }
-
-  if (!isAuthenticated || !user) {
-    return <Login onLogin={login} />;
   }
 
   // Clear documentId param after it's been used (to allow normal navigation)
@@ -88,7 +83,6 @@ function App() {
       user={user}
       activeTab={activeTab}
       onTabChange={handleTabChange}
-      onLogout={logout}
       rightPanelOpen={rightPanelOpen}
     >
       {renderContent()}

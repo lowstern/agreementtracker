@@ -20,6 +20,29 @@
   grid-template-columns: 280px 1fr;
 }
 
+/* Demo Banner */
+.demoBanner {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  z-index: 1000;
+}
+
+.demoBannerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.demoBannerContent svg {
+  flex-shrink: 0;
+}
+
 /* Left Panel */
 .leftPanel {
   background: var(--bg-secondary);
