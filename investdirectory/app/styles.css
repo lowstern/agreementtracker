@@ -68,7 +68,7 @@ nav.show {
 }
 
 .btn-nav {
-    background: #059669;
+    background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
     color: #ffffff;
     padding: 10px 24px;
     border-radius: 8px;
@@ -77,12 +77,13 @@ nav.show {
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
 .btn-nav:hover {
-    background: #047857;
+    background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
 }
 
 .persona-selector {
@@ -843,4 +844,247 @@ footer {
 
 .footer-links a:hover {
     color: #ffffff;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 24px;
+    }
+    
+    .persona-buttons {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    .persona-btn {
+        padding: 32px 24px;
+    }
+    
+    .problem-stats,
+    .stats-grid,
+    .roles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid,
+    .why-grid,
+    .screenshot-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 16px;
+        font-size: 14px;
+    }
+    
+    .nav-links a:not(.btn-nav) {
+        display: none;
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+    
+    .btn-nav {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+    
+    .persona-selector h2 {
+        font-size: 36px;
+    }
+    
+    .persona-description {
+        font-size: 18px;
+        margin-bottom: 48px;
+    }
+    
+    .persona-container {
+        padding: 40px 24px;
+    }
+    
+    .persona-logo {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+    
+    .hero {
+        padding: 80px 24px 100px;
+    }
+    
+    .hero h1 {
+        font-size: 40px;
+        line-height: 1.2;
+    }
+    
+    .hero .tagline {
+        font-size: 18px;
+    }
+    
+    .hero .description {
+        font-size: 17px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 14px 24px;
+    }
+    
+    .section {
+        padding: 60px 24px;
+    }
+    
+    .section h2 {
+        font-size: 32px;
+    }
+    
+    .section-subtitle {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+    
+    .solution-intro .intro-large {
+        font-size: 18px;
+    }
+    
+    .solution-intro .intro-highlight {
+        font-size: 20px;
+        padding: 20px 24px;
+    }
+    
+    .problem-stat,
+    .stat-card {
+        padding: 32px 24px;
+    }
+    
+    .problem-stat h3,
+    .stat-number {
+        font-size: 42px;
+    }
+    
+    .market-quote {
+        padding: 32px 24px;
+    }
+    
+    .market-quote p {
+        font-size: 17px;
+    }
+    
+    .feature-card {
+        padding: 32px 24px;
+    }
+    
+    .feature-card h3 {
+        font-size: 20px;
+    }
+    
+    .product-showcase {
+        padding: 80px 24px;
+    }
+    
+    .screenshot-features {
+        gap: 40px;
+        margin-top: 48px;
+    }
+    
+    .role-card {
+        padding: 28px 24px;
+    }
+    
+    .why-card {
+        padding: 28px 24px;
+    }
+    
+    .how-it-fits {
+        padding: 40px 24px;
+        margin-top: 40px;
+    }
+    
+    .how-it-fits h3 {
+        font-size: 24px;
+    }
+    
+    .how-it-fits .intro,
+    .how-it-fits .list-title,
+    .how-it-fits li {
+        font-size: 16px;
+    }
+    
+    .cta-section {
+        padding: 80px 24px;
+    }
+    
+    .cta-section h2 {
+        font-size: 36px;
+    }
+    
+    .cta-section p {
+        font-size: 18px;
+    }
+    
+    footer {
+        padding: 48px 24px;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero .tagline {
+        font-size: 16px;
+    }
+    
+    .hero .description {
+        font-size: 16px;
+    }
+    
+    .section h2 {
+        font-size: 28px;
+    }
+    
+    .persona-selector h2 {
+        font-size: 28px;
+    }
+    
+    .persona-btn {
+        padding: 24px 20px;
+        font-size: 18px;
+    }
+    
+    .solution-intro .intro-highlight {
+        font-size: 18px;
+        padding: 16px 20px;
+    }
+    
+    .stat-number,
+    .problem-stat h3 {
+        font-size: 36px;
+    }
+    
+    .cta-section h2 {
+        font-size: 28px;
+    }
+    
+    .modal-content {
+        padding: 32px 24px;
+    }
+    
+    .modal-content h2 {
+        font-size: 24px;
+    }
 }
