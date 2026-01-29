@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import ContactModal from './components/ContactModal';
 import ImageCarousel from './components/ImageCarousel';
+import StructuredData from './components/StructuredData';
 import './styles.css';
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
 
   return (
     <>
+      <StructuredData />
       <nav className={showNav ? 'show' : ''}>
         <div className="nav-container">
           <div className="logo">Termifi</div>
@@ -62,7 +64,7 @@ export default function Home() {
       
       <section className="hero">
         <div className="hero-container">
-          <h1>Transform Contract Chaos<br/>Into Strategic Clarity</h1>
+          <h1>Transform Contract Chaos Into Strategic Clarity</h1>
           <p className="tagline">The agreement intelligence platform built for asset managers</p>
           <p className="description">As asset managers expand customized, retail-facing offerings, Termifi enables secure, permissioned access to contract terms—without duplicating agreements, processes, or controls.</p>
           <div className="hero-buttons">

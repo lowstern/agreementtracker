@@ -1,0 +1,13 @@
+# robots.txt for GetTermfi.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.gettermfi.com/sitemap.xml
+
+# Block access to API routes
+Disallow: /api/
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
