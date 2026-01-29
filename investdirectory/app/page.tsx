@@ -194,8 +194,8 @@ export default function Home() {
           <h2>Why <span className="accent">Termifi</span></h2>
           <div className="why-grid">
             <div className="why-card">
-              <h3>Not fee-based</h3>
-              <p>Access and insights are not driven by AUM, investor count, or fee structures</p>
+              <h3>Flexible flat fee pricing</h3>
+              <p>Not taking a percentage of AUM</p>
             </div>
             <div className="why-card">
               <h3>No contract duplication</h3>
