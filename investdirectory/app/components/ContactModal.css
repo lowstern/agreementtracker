@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(6, 95, 70, 0.8);
+    background: rgba(30, 58, 138, 0.8);
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
@@ -56,13 +56,13 @@
 }
 
 .modal-close:hover {
-    color: #059669;
+    color: #2563eb;
 }
 
 .modal-content h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #065f46;
+    color: #1e40af;
     margin-bottom: 12px;
     letter-spacing: -0.5px;
 }
@@ -99,8 +99,8 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #059669;
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-group input::placeholder {
@@ -110,7 +110,7 @@
 .submit-btn {
     width: 100%;
     padding: 14px 24px;
-    background: #059669;
+    background: #2563eb;
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -123,9 +123,9 @@
 }
 
 .submit-btn:hover:not(:disabled) {
-    background: #047857;
+    background: #1e40af;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .submit-btn:disabled {
