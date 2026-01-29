@@ -25,7 +25,7 @@ export default function Home() {
     <>
       <nav className={showNav ? 'show' : ''}>
         <div className="nav-container">
-          <div className="logo">GetTermfi</div>
+          <div className="logo">Termifi</div>
           <div className="nav-links">
             <a href="#problem">The Problem</a>
             <a href="#solution">Solution</a>
@@ -38,7 +38,7 @@ export default function Home() {
       {showPersona && (
         <section className="persona-selector fade-in" id="persona-selector">
           <div className="persona-container">
-            <div className="persona-logo">GetTermfi</div>
+            <div className="persona-logo">Termifi</div>
             <h2>Select Your Role</h2>
             <p className="persona-description">Choose your area to access the right product for your needs</p>
             <div className="persona-buttons">
@@ -63,7 +63,7 @@ export default function Home() {
         <div className="hero-container">
           <h1>Transform Contract Chaos<br/>Into Strategic Clarity</h1>
           <p className="tagline">The agreement intelligence platform built for asset managers</p>
-          <p className="description">As asset managers expand customized, retail-facing offerings, GetTermfi enables secure, permissioned access to contract terms—without duplicating agreements, processes, or controls.</p>
+          <p className="description">As asset managers expand customized, retail-facing offerings, Termifi enables secure, permissioned access to contract terms—without duplicating agreements, processes, or controls.</p>
           <div className="hero-buttons">
             <a href="#" className="btn btn-primary" onClick={handleContactClick}>Contact Us</a>
             <a href="#" className="btn btn-secondary" onClick={handleContactClick}>Schedule a Demo</a>
@@ -125,7 +125,7 @@ export default function Home() {
           <h2>The <span className="accent">Market</span></h2>
           <div className="market-quote">
             <p>AI creates value in asset management when it removes friction from regulated workflows.</p>
-            <p>Most firms still rely on PDFs, inboxes, and disconnected systems to manage agreements. GetTermfi provides a living contract layer—allowing approved terms to be surfaced instantly while remaining anchored to the firm's authoritative contract record managed in Millie.</p>
+            <p>Most firms still rely on PDFs, inboxes, and disconnected systems to manage agreements. Termifi provides a living contract layer—allowing approved terms to be surfaced instantly while remaining anchored to the firm's authoritative contract record managed in Millie.</p>
             <p className="market-stat">89% of businesses still lack a centralized contract system.</p>
           </div>
         </div>
@@ -214,7 +214,7 @@ export default function Home() {
       
       <section className="section">
         <div className="section-container">
-          <h2>Why <span className="accent">GetTermfi</span></h2>
+          <h2>Why <span className="accent">Termifi</span></h2>
           <div className="why-grid">
             <div className="why-card">
               <h3>Not fee-based</h3>
@@ -241,8 +241,8 @@ export default function Home() {
           <h2>How It <span className="accent">Fits</span></h2>
           <div className="how-it-fits">
             <h3>Built on Millie</h3>
-            <p className="intro">GetTermfi is a dedicated access layer built on top of Millie, the enterprise contract platform already used by asset managers to govern agreements firmwide.</p>
-            <p className="list-title">This allows GetTermfi to:</p>
+            <p className="intro">Termifi is a dedicated access layer built on top of Millie, the enterprise contract platform already used by asset managers to govern agreements firmwide.</p>
+            <p className="list-title">This allows Termifi to:</p>
             <ul>
               <li>Expose investor-relevant terms without distributing full contracts</li>
               <li>Stay synchronized with legal-approved source documents</li>
@@ -265,7 +265,7 @@ export default function Home() {
       
       <footer>
         <div className="footer-container">
-          <div className="footer-text">© 2026 GetTermfi · Contract Intelligence Platform</div>
+          <div className="footer-text">© 2026 Termifi · Contract Intelligence Platform</div>
           <div className="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

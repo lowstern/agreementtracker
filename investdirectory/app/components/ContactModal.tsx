@@ -64,7 +64,7 @@ export default function ContactModal({ onClose }: ContactModalProps) {
         {!submitted ? (
           <>
             <h2>Contact Us</h2>
-            <p className="modal-subtitle">Get in touch to learn more about GetTermfi</p>
+            <p className="modal-subtitle">Get in touch to learn more about Termifi</p>
             
             <form onSubmit={handleSubmit}>
               <div className="form-group">
