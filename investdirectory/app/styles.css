@@ -78,8 +78,8 @@ nav.show {
 }
 
 .btn-nav {
-    background: #2563eb;
-    color: #ffffff;
+    background: #2563eb !important;
+    color: #ffffff !important;
     padding: 10px 24px;
     border-radius: 8px;
     font-weight: 600;
@@ -91,9 +91,18 @@ nav.show {
 }
 
 .btn-nav:hover {
-    background: #1e40af;
+    background: #1e40af !important;
+    color: #ffffff !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.nav-links .btn-nav {
+    color: #ffffff !important;
+}
+
+.nav-links a.btn-nav {
+    color: #ffffff !important;
 }
 
 .persona-selector {
