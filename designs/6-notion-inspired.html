@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design 6: Notion-Inspired</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #ffffff;
+      color: #37352f;
+      line-height: 1.5;
+    }
+    
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: #fbfbfa;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e8e8e8;
+    }
+    
+    .workspace {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+    .workspace:hover { background: #ebebea; }
+    .workspace-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #7f5af0 0%, #2cb67d 100%);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .workspace-name { font-size: 14px; font-weight: 500; flex: 1; }
+    
+    .nav-section { margin-bottom: 24px; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #37352f;
+      transition: background 0.1s;
+    }
+    .nav-item:hover { background: #ebebea; }
+    .nav-item.active { background: #f1f1f0; }
+    .nav-item svg {
+      width: 18px;
+      height: 18px;
+      color: #9b9a97;
+    }
+    .nav-item.active svg { color: #37352f; }
+    
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 12px 8px;
+      border-top: 1px solid #e8e8e8;
+    }
+    .user-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user-avatar {
+      width: 24px;
+      height: 24px;
+      background: #e3e2e0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .user-name { font-size: 14px; color: #9b9a97; }
+    
+    /* Main */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Page Header */
+    .page-header {
+      padding: 80px 96px 32px;
+      max-width: 900px;
+    }
+    .page-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      outline: none;
+    }
+    .page-description {
+      font-size: 16px;
+      color: #9b9a97;
+    }
+    
+    /* Toolbar */
+    .toolbar {
+      padding: 12px 96px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .tool-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #9b9a97;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .tool-btn:hover { background: #f1f1f0; color: #37352f; }
+    .tool-btn svg { width: 16px; height: 16px; }
+    .divider {
+      width: 1px;
+      height: 20px;
+      background: #e8e8e8;
+      margin: 0 4px;
+    }
+    .search-input {
+      padding: 4px 8px;
+      border: none;
+      font-size: 14px;
+      color: #37352f;
+      background: #f1f1f0;
+      border-radius: 4px;
+      width: 200px;
+    }
+    .search-input::placeholder { color: #9b9a97; }
+    .search-input:focus { outline: none; background: #e8e8e8; }
+    .btn-new {
+      margin-left: auto;
+      padding: 6px 12px;
+      background: #2383e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-new:hover { background: #0b6bcb; }
+    
+    /* Table */
+    .content-area {
+      padding: 24px 96px;
+      max-width: 1200px;
+    }
+    
+    .table-container {
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 14px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    th {
+      background: #fbfbfa;
+      font-weight: 500;
+      color: #9b9a97;
+      font-size: 12px;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fbfbfa; }
+    
+    .cell-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .row-icon {
+      width: 22px;
+      height: 22px;
+      background: #e3e2e0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .investor-name {
+      font-weight: 500;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .tag-blue { background: #d3e5ef; color: #183347; }
+    .tag-purple { background: #e8deee; color: #412754; }
+    .tag-green { background: #dbeddb; color: #1c3829; }
+    .tag-orange { background: #fadec9; color: #492b08; }
+    
+    .amount {
+      font-variant-numeric: tabular-nums;
+    }
+    
+    .relation-cell {
+      color: #9b9a97;
+      font-size: 13px;
+    }
+    
+    .actions-cell {
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity 0.1s;
+    }
+    tr:hover .actions-cell { opacity: 1; }
+    .action-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #9b9a97;
+    }
+    .action-btn:hover { background: #e8e8e8; color: #37352f; }
+    
+    /* Add row */
+    .add-row {
+      padding: 8px 12px;
+      border-top: 1px solid #e8e8e8;
+    }
+    .add-row-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #9b9a97;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .add-row-btn:hover { background: #f1f1f0; color: #37352f; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="workspace">
+        <div class="workspace-icon">A</div>
+        <span class="workspace-name">Investor Directory</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+      
+      <div class="nav-section">
+        <div class="nav-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+          </svg>
+          Investors
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <path d="M14 2v6h6"/>
+          </svg>
+          Agreements
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+          Fee Logic
+        </div>
+      </div>
+      
+      <div class="sidebar-footer">
+        <div class="user-row">
+          <div class="user-avatar">DU</div>
+          <span class="user-name">Demo User</span>
+        </div>
+      </div>
+    </aside>
+    
+    <main class="main-content">
+      <div class="page-header">
+        <div class="page-icon">👥</div>
+        <h1 class="page-title" contenteditable="true">Investor Directory</h1>
+        <p class="page-description">Track and manage all investor profiles, commitments, and relationships.</p>
+      </div>
+      
+      <div class="toolbar">
+        <button class="tool-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+          Filter
+        </button>
+        <button class="tool-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M7 12h10M10 18h4"/>
+          </svg>
+          Sort
+        </button>
+        <div class="divider"></div>
+        <input type="search" class="search-input" placeholder="Search...">
+        <button class="btn-new">+ New</button>
+      </div>
+      
+      <div class="content-area">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 280px;">Name</th>
+                <th>Type</th>
+                <th>Commitment</th>
+                <th>Fund</th>
+                <th>Relationship</th>
+                <th style="width: 80px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <div class="row-icon">📊</div>
+                    <span class="investor-name">Mock Capital LP</span>
+                  </div>
+                </td>
+                <td><span class="tag tag-blue">LP</span></td>
+                <td class="amount">$250,000,000</td>
+                <td>Mock Fund I</td>
+                <td class="relation-cell">Side letter for fee break</td>
+                <td>
+                  <div class="actions-cell">
+                    <button class="action-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                      </svg>
+                    </button>
+                    <button class="action-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <div class="row-icon">🏠</div>
+                    <span class="investor-name">Atlas Family Office</span>
+                  </div>
+                </td>
+                <td><span class="tag tag-purple">Family Office</span></td>
+                <td class="amount">$75,000,000</td>
+                <td>Mock Fund I</td>
+                <td class="relation-cell">Co-investment rights</td>
+                <td>
+                  <div class="actions-cell">
+                    <button class="action-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                      </svg>
+                    </button>
+                    <button class="action-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">
+                    <div class="row-icon">🏛️</div>
+                    <span class="investor-name">Meridian Pension Fund</span>
+                  </div>
+                </td>
+                <td><span class="tag tag-green">Institutional</span></td>
+                <td class="amount">$500,000,000</td>
+                <td>Mock Fund II</td>
+                <td class="relation-cell">MFN clause</td>
+                <td>
+                  <div class="actions-cell">
+                    <button class="action-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                      </svg>
+                    </button>
+                    <button class="action-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="add-row">
+            <button class="add-row-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              New investor
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 4: Card Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f0f0;
+            color: #1a1a1a;
+        }
+        
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            padding: 16px 32px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 16px;
+        }
+        
+        nav a {
+            color: #666666;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .btn-nav {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+        
+        .hero-section {
+            padding: 140px 60px 80px;
+            text-align: center;
+            background: #ffffff;
+        }
+        
+        .hero-section h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+        
+        .hero-section p {
+            font-size: 22px;
+            color: #666666;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+        
+        .card-grid {
+            padding: 80px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-large {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+        
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
+        
+        .card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .card p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666666;
+        }
+        
+        .card-large p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+        }
+        
+        .card-stat {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .cta-card {
+            background: #1a1a1a;
+            color: #ffffff;
+            grid-column: span 2;
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .cta-card h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        
+        .btn-large {
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 18px 48px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+        }
+        
+        footer {
+            padding: 60px;
+            background: #ffffff;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: #666666;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer-text {
+            color: #999999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Agreement Tracker</div>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#docs">Docs</a>
+        <a href="#" class="btn-nav">Get Started</a>
+    </nav>
+    
+    <section class="hero-section">
+        <h1>Agreement Management<br>Reimagined</h1>
+        <p>Extract, organize, and manage LP agreements with complete transparency. The modern platform for fund managers.</p>
+    </section>
+    
+    <div class="card-grid">
+        <div class="card card-large">
+            <div class="card-icon">🚀</div>
+            <h3>AI-Powered Extraction</h3>
+            <p>Upload any agreement and watch our AI automatically extract every term, fee, and commitment. Zero manual data entry required. Every value linked to its source.</p>
+        </div>
+        
+        <div class="card card-stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Citation Coverage</div>
+        </div>
+        
+        <div class="card card-stat">
+            <div class="stat-number">10x</div>
+            <div class="stat-label">Faster Lookup</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">🔗</div>
+            <h3>Source Citations</h3>
+            <p>Click any value to see the exact clause it came from. Complete traceability for audit and compliance.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">⚖️</div>
+            <h3>Conflict Resolution</h3>
+            <p>Automatic hierarchy rules determine which terms apply when documents conflict.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">💰</div>
+            <h3>Fee Modeling</h3>
+            <p>Model scenarios in real-time with tier structures and discount rules built in.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h3>Investor Directory</h3>
+            <p>Centralized repository with powerful search and relationship management.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">📧</div>
+            <h3>Email Integration</h3>
+            <p>Forward agreements to your inbox. Automatic processing on receipt.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">🔒</div>
+            <h3>Enterprise Security</h3>
+            <p>Bank-level encryption, SOC 2 compliance, and secure infrastructure.</p>
+        </div>
+        
+        <div class="cta-card">
+            <h2>Ready to transform your agreement management?</h2>
+            <p style="color: #999999; margin-bottom: 32px;">Join fund managers who trust Agreement Tracker</p>
+            <a href="#" class="btn-large">Schedule a Demo</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-text">© 2026 Agreement Tracker. All rights reserved.</div>
+    </footer>
+</body>
+</html>

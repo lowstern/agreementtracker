@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Document - Investor Directory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #1c1c1c;
+      color: #d4d4d4;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .header {
+      padding: 16px 32px;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #141414;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .back-btn {
+      padding: 8px;
+      background: none;
+      border: none;
+      color: #808080;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .back-btn:hover { background: #2a2a2a; color: #d4d4d4; }
+    .header h1 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+    .header-actions { display: flex; gap: 8px; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-ghost {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #a0a0a0;
+    }
+    .btn-ghost:hover { background: #2a2a2a; }
+    .btn-primary {
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      color: #e0e0e0;
+    }
+    .btn-primary:hover { background: #333; border-color: #4a4a4a; }
+    
+    .form-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+    
+    .form-section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
+    
+    .form-group { }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #808080;
+      margin-bottom: 8px;
+    }
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      color: #d4d4d4;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .form-input::placeholder { color: #404040; }
+    .form-input:focus,
+    .form-select:focus { outline: none; border-color: #404040; }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23606060' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+    }
+    
+    /* File Upload */
+    .file-upload {
+      border: 2px dashed #2a2a2a;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .file-upload:hover {
+      border-color: #404040;
+      background: #141414;
+    }
+    .file-upload-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      background: #2a2a2a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .file-upload-icon svg { stroke: #606060; }
+    .file-upload-text {
+      font-size: 14px;
+      color: #808080;
+      margin-bottom: 4px;
+    }
+    .file-upload-hint {
+      font-size: 12px;
+      color: #525252;
+    }
+    
+    .form-hint {
+      font-size: 12px;
+      color: #525252;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1>Add Document</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-primary">Save Document</button>
+    </div>
+  </header>
+  
+  <div class="form-container">
+    <div class="form-section">
+      <h2 class="section-title">Upload File</h2>
+      
+      <div class="file-upload">
+        <div class="file-upload-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+        </div>
+        <div class="file-upload-text">Drop a file here or click to upload</div>
+        <div class="file-upload-hint">PDF, DOC, DOCX up to 50MB</div>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="section-title">Document Details</h2>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Document Title *</label>
+          <input type="text" class="form-input" placeholder="e.g., Mock Capital Side Letter">
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Investor *</label>
+          <select class="form-select">
+            <option value="">Select investor...</option>
+            <option>Mock Capital LP</option>
+            <option>Atlas Family Office</option>
+            <option>Meridian Pension Fund</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fund</label>
+          <select class="form-select">
+            <option value="">Select fund...</option>
+            <option>Mock Fund I</option>
+            <option>Mock Fund II</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Document Type *</label>
+          <select class="form-select">
+            <option value="">Select type...</option>
+            <option>Side Letter</option>
+            <option>Subscription Agreement</option>
+            <option>Amendment</option>
+            <option>Fee Schedule</option>
+            <option>PPM</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Effective Date</label>
+          <input type="date" class="form-input">
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select">
+            <option>Active</option>
+            <option>Draft</option>
+            <option>Superseded</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Supersedes</label>
+          <select class="form-select">
+            <option value="">None (new agreement)</option>
+            <option>Mock Capital Subscription Agreement</option>
+          </select>
+          <p class="form-hint">Select if this document replaces an older one</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

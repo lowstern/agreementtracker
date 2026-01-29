@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Enterprise Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #0f172a;
+            color: #ffffff;
+        }
+        
+        .btn-primary:hover {
+            background: #1e293b;
+        }
+        
+        .hero {
+            padding: 160px 48px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            max-width: 720px;
+        }
+        
+        .hero-label {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            color: #0f172a;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-secondary {
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #f8fafc;
+        }
+        
+        .product-preview {
+            margin: 80px auto 0;
+            max-width: 1200px;
+            padding: 0 48px 80px;
+        }
+        
+        .preview-window {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+        
+        .window-bar {
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .window-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+        
+        .preview-content {
+            padding: 48px;
+            min-height: 500px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preview-text {
+            font-size: 18px;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+        
+        .social-proof {
+            padding: 64px 48px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        
+        .social-proof-label {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        .company-logos {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .company-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+        
+        .features {
+            padding: 120px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            max-width: 640px;
+            margin-bottom: 80px;
+        }
+        
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.2s;
+        }
+        
+        .feature-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .stats-section {
+            padding: 120px 48px;
+            background: #0f172a;
+            color: #ffffff;
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 64px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .stat-label {
+            font-size: 15px;
+            color: #94a3b8;
+        }
+        
+        .use-cases {
+            padding: 120px 48px;
+            background: #f8fafc;
+        }
+        
+        .use-case-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 64px;
+        }
+        
+        .use-case {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+        }
+        
+        .use-case-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #f1f5f9;
+            color: #475569;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .use-case h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+        
+        .use-case p {
+            font-size: 16px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .use-case ul {
+            list-style: none;
+        }
+        
+        .use-case li {
+            font-size: 15px;
+            color: #475569;
+            padding-left: 24px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .use-case li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #94a3b8;
+        }
+        
+        .cta {
+            padding: 120px 48px;
+            text-align: center;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+        
+        footer {
+            padding: 64px 48px 40px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 48px;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+        
+        .footer-brand p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .footer-links h4 {
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            font-size: 14px;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #0f172a;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-bottom p {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-bottom-links a {
+            font-size: 13px;
+            color: #64748b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            Agreement Tracker
+        </div>
+        <div class="nav-links">
+            <a href="#product">Product</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#docs">Documentation</a>
+            <a href="#" class="btn btn-primary">Request Demo</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">Enterprise agreement management</span>
+            <h1>Turn legal documents into structured data</h1>
+            <p>Extract and manage LP agreements with complete transparency. Every data point traced back to its source.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="#" class="btn btn-secondary">View Documentation</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="product-preview">
+        <div class="preview-window">
+            <div class="window-bar">
+                <div class="window-dot"></div>
+                <div class="window-dot"></div>
+                <div class="window-dot"></div>
+            </div>
+            <div class="preview-content">
+                <span class="preview-text">Product Interface</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="social-proof">
+        <p class="social-proof-label">Trusted by leading fund managers</p>
+        <div class="company-logos">
+            <div class="company-logo">ACME Capital</div>
+            <div class="company-logo">Vertex Partners</div>
+            <div class="company-logo">Summit Ventures</div>
+            <div class="company-logo">Peak Investments</div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="section-header">
+            <h2>Built for fund management</h2>
+            <p>Every feature designed to give you complete visibility into investor terms, with full traceability back to source documents.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Document extraction</h3>
+                <p>AI-powered extraction of terms, fees, and commitments from any legal document. Zero manual entry.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Source citations</h3>
+                <p>Every data point links to its source clause. Click any value to see the exact text it came from.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Conflict resolution</h3>
+                <p>Automatic rules determine which terms apply when documents conflict. Manual override available.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Fee modeling</h3>
+                <p>Real-time calculations with tier structures and discount rules. Model scenarios instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Investor directory</h3>
+                <p>Centralized repository for all LP data with search and relationship management.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📧</div>
+                <h3>Email integration</h3>
+                <p>Forward agreements to your dedicated inbox. Automatic processing on receipt.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Source citation coverage</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10x</div>
+                <div class="stat-label">Faster term lookup</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">Zero</div>
+                <div class="stat-label">Manual data entry</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="use-cases">
+        <div class="section-header">
+            <h2>Built for every team</h2>
+            <p>Purpose-built workflows for investor relations, legal, compliance, and finance teams.</p>
+        </div>
+        <div class="use-case-grid">
+            <div class="use-case">
+                <span class="use-case-tag">Investor Relations</span>
+                <h3>Find investor terms instantly</h3>
+                <p>Look up any investor's commitments, fee structures, and special provisions in seconds.</p>
+                <ul>
+                    <li>Search across all agreements</li>
+                    <li>View effective terms at a glance</li>
+                    <li>Track relationship notes and history</li>
+                </ul>
+            </div>
+            <div class="use-case">
+                <span class="use-case-tag">Legal & Compliance</span>
+                <h3>Verify clause accuracy</h3>
+                <p>Upload agreements and validate extracted terms with complete source transparency.</p>
+                <ul>
+                    <li>Citation for every data point</li>
+                    <li>Document hierarchy management</li>
+                    <li>Audit trail for all changes</li>
+                </ul>
+            </div>
+            <div class="use-case">
+                <span class="use-case-tag">Finance</span>
+                <h3>Model fee calculations</h3>
+                <p>Understand discount structures and calculate fees with tier-based modeling.</p>
+                <ul>
+                    <li>Real-time fee calculations</li>
+                    <li>Scenario testing and modeling</li>
+                    <li>Annual impact projections</li>
+                </ul>
+            </div>
+            <div class="use-case">
+                <span class="use-case-tag">Operations</span>
+                <h3>Maintain a single source of truth</h3>
+                <p>Stop managing multiple spreadsheets. Keep all agreement data in one place.</p>
+                <ul>
+                    <li>Centralized data repository</li>
+                    <li>Real-time updates and sync</li>
+                    <li>Team collaboration tools</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <h2>Ready to get started?</h2>
+        <p>See how Agreement Tracker transforms fund management operations</p>
+        <a href="#" class="btn btn-primary">Schedule a Demo</a>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    Agreement Tracker
+                </div>
+                <p>Enterprise agreement management platform for fund managers.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Changelog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Agreement Tracker. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

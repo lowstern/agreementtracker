@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 1: Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d1117;
+            color: #58a6ff;
+            line-height: 1.6;
+        }
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 16px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .logo {
+            color: #58a6ff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .logo::before {
+            content: '$ ';
+            color: #7ee787;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #58a6ff;
+        }
+        
+        .btn-primary {
+            background: #238636;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .hero {
+            padding: 140px 48px 80px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .terminal-window {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .terminal-header {
+            background: #161b22;
+            padding: 12px 16px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #8b949e;
+        }
+        
+        .terminal-body {
+            padding: 32px;
+            font-size: 14px;
+            line-height: 2;
+        }
+        
+        .prompt {
+            color: #7ee787;
+        }
+        
+        .command {
+            color: #58a6ff;
+        }
+        
+        .output {
+            color: #c9d1d9;
+            margin-left: 20px;
+        }
+        
+        .highlight {
+            color: #ffa657;
+            font-weight: 600;
+        }
+        
+        .comment {
+            color: #8b949e;
+        }
+        
+        .features {
+            padding: 80px 48px;
+            background: #010409;
+        }
+        
+        .features-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: #7ee787;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+        
+        .section-title::before {
+            content: '## ';
+            color: #8b949e;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .feature-item {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+        
+        .feature-item h3 {
+            color: #58a6ff;
+            font-size: 14px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .feature-item h3::before {
+            content: '> ';
+            color: #7ee787;
+        }
+        
+        .feature-item p {
+            color: #8b949e;
+            line-height: 1.8;
+        }
+        
+        .stats {
+            padding: 80px 48px;
+            background: #0d1117;
+            border-top: 1px solid #30363d;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        .stats-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .stat-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 32px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-value {
+            font-size: 48px;
+            color: #7ee787;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #8b949e;
+            text-transform: uppercase;
+        }
+        
+        .cta {
+            padding: 80px 48px;
+            background: #010409;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .cta h2 {
+            color: #c9d1d9;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .cta p {
+            color: #8b949e;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        
+        .cta-button {
+            background: #238636;
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        footer {
+            padding: 48px 48px 32px;
+            background: #010409;
+            border-top: 1px solid #30363d;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-text {
+            color: #8b949e;
+            font-size: 12px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+        .footer-links a:hover {
+            color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">agreement-tracker</div>
+        <div class="nav-links">
+            <a href="#docs">docs</a>
+            <a href="#api">api</a>
+            <a href="#pricing">pricing</a>
+            <button class="btn-primary">get started</button>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dot"></div>
+                <div class="terminal-dot"></div>
+                <div class="terminal-dot"></div>
+            </div>
+            <div class="terminal-body">
+                <div><span class="prompt">user@fund:~$</span> <span class="command">./agreement-tracker --info</span></div>
+                <div class="output">
+                    <div>Agreement Tracker v2.0</div>
+                    <div>Enterprise agreement management platform</div>
+                    <div></div>
+                    <div><span class="highlight">FEATURES:</span></div>
+                    <div>  ✓ AI document extraction</div>
+                    <div>  ✓ Source citation linking</div>
+                    <div>  ✓ Conflict resolution engine</div>
+                    <div>  ✓ Real-time fee modeling</div>
+                    <div></div>
+                    <div><span class="highlight">STATUS:</span> <span style="color: #7ee787;">OPERATIONAL</span></div>
+                    <div class="comment"># Built for fund managers who need precision</div>
+                </div>
+                <div style="margin-top: 20px;"><span class="prompt">user@fund:~$</span> <span class="command">█</span></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">core.features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>extract(documents)</h3>
+                    <p>AI-powered extraction of terms, fees, and commitments. Zero manual entry. Every value traced to source.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>resolve(conflicts)</h3>
+                    <p>Automatic hierarchy rules determine precedence. Side letters override subscription agreements.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>calculate(fees)</h3>
+                    <p>Real-time modeling with tier structures. Scenario testing with instant results.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>track(investors)</h3>
+                    <p>Centralized directory with search and relationship management. Single source of truth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">citation coverage</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">10x</div>
+                <div class="stat-label">faster lookup</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">0</div>
+                <div class="stat-label">manual entry</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Ready to deploy?</h2>
+            <p>Start managing your LP agreements with complete transparency</p>
+            <a href="#" class="cta-button">Request Access →</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">© 2026 agreement-tracker</div>
+            <div class="footer-links">
+                <a href="#">privacy</a>
+                <a href="#">terms</a>
+                <a href="#">security</a>
+                <a href="#">docs</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

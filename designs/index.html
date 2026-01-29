@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design Options</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #d4d4d4;
+            min-height: 100vh;
+            padding: 64px 48px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #ffffff;
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            color: #808080;
+            font-size: 20px;
+            margin-bottom: 64px;
+        }
+        
+        .section-title {
+            font-size: 13px;
+            color: #525252;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+        
+        .card {
+            background: #141414;
+            border: 1px solid #1c1c1c;
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.2s;
+        }
+        
+        .card:hover {
+            border-color: #2a2a2a;
+            transform: translateY(-2px);
+        }
+        
+        .card-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #1c1c1c;
+            color: #808080;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: #808080;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            background: #2a2a2a;
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.2s;
+            border: 1px solid #3a3a3a;
+        }
+        
+        .btn:hover {
+            background: #333333;
+            border-color: #4a4a4a;
+        }
+        
+        .highlight {
+            background: #1e3a5f;
+            border-color: #2a5080;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>8 Completely Different Designs</h1>
+        <p class="subtitle">Choose the design direction you prefer for Agreement Tracker</p>
+        
+        <p class="section-title">All Designs - Truly Different</p>
+        <div class="grid">
+            <div class="card">
+                <div class="card-tag">Terminal</div>
+                <h2>1. Developer Style</h2>
+                <p>GitHub-inspired terminal design with monospace fonts, green accents, and code-like aesthetic</p>
+                <a href="design-1-terminal.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Bold</div>
+                <h2>2. Orange Energy</h2>
+                <p>Aggressive bold design with huge typography, orange theme, and high-impact messaging</p>
+                <a href="design-2-bold-orange.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Split</div>
+                <h2>3. Split Screen</h2>
+                <p>Asymmetric 45/55 layout with black theme, features on right, content on left</p>
+                <a href="design-3-split-screen.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Cards</div>
+                <h2>4. Card Grid</h2>
+                <p>Modular card-based design with floating nav, light theme, and masonry-style layout</p>
+                <a href="design-4-cards.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Luxury</div>
+                <h2>5. Purple Premium</h2>
+                <p>Elegant design with Playfair serif fonts, purple gradients, and luxury positioning</p>
+                <a href="design-5-purple-luxury.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Dashboard</div>
+                <h2>6. Sidebar App</h2>
+                <p>Dashboard-style with persistent sidebar navigation, metrics cards, and app-like feel</p>
+                <a href="design-6-sidebar-dashboard.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Story</div>
+                <h2>7. Timeline Journey</h2>
+                <p>Vertical timeline layout telling a story, numbered steps with center line</p>
+                <a href="design-7-timeline.html" class="btn">View Design →</a>
+            </div>
+            
+            <div class="card">
+                <div class="card-tag">Editorial</div>
+                <h2>8. Magazine Style</h2>
+                <p>Print-inspired with Libre Baskerville serif, large numbers, editorial grid layout</p>
+                <a href="design-8-magazine.html" class="btn">View Design →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

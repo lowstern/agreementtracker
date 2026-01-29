@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 2: Bold Orange</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            background: #ff6b35;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            margin-left: 40px;
+        }
+        
+        .btn-nav {
+            background: #ffffff;
+            color: #ff6b35;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            margin-left: 40px;
+        }
+        
+        .hero {
+            padding: 180px 60px 100px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 32px;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            opacity: 0.95;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .btn-large {
+            padding: 20px 48px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-white {
+            background: #ffffff;
+            color: #ff6b35;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 3px solid #ffffff;
+        }
+        
+        .impact-stats {
+            padding: 80px 60px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            text-align: center;
+        }
+        
+        .stat-huge {
+            font-size: 96px;
+            font-weight: 900;
+            color: #ff6b35;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        
+        .stat-desc {
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .features-bold {
+            padding: 120px 60px;
+            background: #ffffff;
+        }
+        
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .features-header h2 {
+            font-size: 64px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+        
+        .features-header p {
+            font-size: 22px;
+            color: #666666;
+            font-weight: 600;
+        }
+        
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .feature-box {
+            background: #f5f5f5;
+            padding: 48px;
+            border-radius: 16px;
+            border-left: 8px solid #ff6b35;
+        }
+        
+        .feature-box h3 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        
+        .feature-box p {
+            font-size: 18px;
+            color: #666666;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        
+        .power-section {
+            padding: 120px 60px;
+            background: #ff6b35;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .power-section h2 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+        
+        .power-section p {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .power-section .btn-white {
+            font-size: 20px;
+            padding: 24px 56px;
+        }
+        
+        footer {
+            padding: 60px 60px 40px;
+            background: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .footer-links a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Agreement Tracker</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#power">Power</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="btn-nav">Start Now</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>POWER YOUR<br>FUND MANAGEMENT</h1>
+        <p>Extract. Organize. Dominate. The most aggressive agreement tracking platform for fund managers who demand results.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-large btn-white">Get Started</a>
+            <a href="#" class="btn-large btn-outline">Watch Demo</a>
+        </div>
+    </section>
+    
+    <section class="impact-stats">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-huge">100%</div>
+                <div class="stat-desc">Accurate</div>
+            </div>
+            <div>
+                <div class="stat-huge">10X</div>
+                <div class="stat-desc">Faster</div>
+            </div>
+            <div>
+                <div class="stat-huge">ZERO</div>
+                <div class="stat-desc">Manual Work</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features-bold">
+        <div class="features-header">
+            <h2>BUILT TO WIN</h2>
+            <p>Every feature designed for maximum impact</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>AI EXTRACTION</h3>
+                <p>Automatically rip through any legal document and extract every term, fee, and commitment. Zero manual entry required.</p>
+            </div>
+            <div class="feature-box">
+                <h3>INSTANT CITATIONS</h3>
+                <p>Click any value to see its exact source. Complete transparency and auditability at your fingertips.</p>
+            </div>
+            <div class="feature-box">
+                <h3>SMART CONFLICTS</h3>
+                <p>Automatic resolution when documents disagree. The system always knows which terms apply.</p>
+            </div>
+            <div class="feature-box">
+                <h3>FEE DOMINATION</h3>
+                <p>Model scenarios in real-time. Understand every discount, tier, and structure instantly.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="power-section">
+        <h2>READY TO DOMINATE?</h2>
+        <p>Join the fund managers who refuse to settle for outdated spreadsheets</p>
+        <a href="#" class="btn-large btn-white">Request Demo</a>
+    </section>
+    
+    <footer>
+        <div class="footer-text">© 2026 AGREEMENT TRACKER - ALL RIGHTS RESERVED</div>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+        </div>
+    </footer>
+</body>
+</html>

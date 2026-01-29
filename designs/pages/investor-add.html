@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Investor - Investor Directory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #1c1c1c;
+      color: #d4d4d4;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .header {
+      padding: 16px 32px;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #141414;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .back-btn {
+      padding: 8px;
+      background: none;
+      border: none;
+      color: #808080;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .back-btn:hover { background: #2a2a2a; color: #d4d4d4; }
+    .header h1 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+    .header-actions { display: flex; gap: 8px; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+    .btn-ghost {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #a0a0a0;
+    }
+    .btn-ghost:hover { background: #2a2a2a; }
+    .btn-primary {
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      color: #e0e0e0;
+    }
+    .btn-primary:hover { background: #333; border-color: #4a4a4a; }
+    
+    .form-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+    
+    .form-section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
+    
+    .form-group { }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #808080;
+      margin-bottom: 8px;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      color: #d4d4d4;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #404040; }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus { outline: none; border-color: #404040; }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23606060' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+    }
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .form-hint {
+      font-size: 12px;
+      color: #525252;
+      margin-top: 6px;
+    }
+    
+    .input-with-prefix {
+      display: flex;
+    }
+    .input-prefix {
+      padding: 10px 14px;
+      background: #0a0a0a;
+      border: 1px solid #2a2a2a;
+      border-right: none;
+      border-radius: 6px 0 0 6px;
+      color: #606060;
+      font-size: 14px;
+    }
+    .input-with-prefix .form-input {
+      border-radius: 0 6px 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1>Add Investor</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-primary">Save Investor</button>
+    </div>
+  </header>
+  
+  <div class="form-container">
+    <div class="form-section">
+      <h2 class="section-title">Basic Information</h2>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Investor Name *</label>
+          <input type="text" class="form-input" placeholder="e.g., Mock Capital LP">
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Investor Type *</label>
+          <select class="form-select">
+            <option value="">Select type...</option>
+            <option>Limited Partner (LP)</option>
+            <option>Family Office</option>
+            <option>Institutional</option>
+            <option>GP</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fund *</label>
+          <select class="form-select">
+            <option value="">Select fund...</option>
+            <option>Mock Fund I</option>
+            <option>Mock Fund II</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="section-title">Commitment Details</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Commitment Amount *</label>
+          <div class="input-with-prefix">
+            <span class="input-prefix">$</span>
+            <input type="text" class="form-input" placeholder="250,000,000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Currency</label>
+          <select class="form-select">
+            <option>USD</option>
+            <option>EUR</option>
+            <option>GBP</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="section-title">Notes</h2>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Relationship Notes</label>
+          <textarea class="form-textarea" placeholder="Side letter details, special terms, key relationships..."></textarea>
+          <p class="form-hint">Visible to all team members. Include relationship context and special arrangements.</p>
+        </div>
+      </div>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Internal Notes</label>
+          <textarea class="form-textarea" placeholder="Internal team notes, contact info, reminders..."></textarea>
+          <p class="form-hint">For internal use only. Contact information, follow-up tasks, etc.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

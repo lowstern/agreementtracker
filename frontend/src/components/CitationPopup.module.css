@@ -1,0 +1,264 @@
+/* Citation Popup Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+/* Citation Popup */
+.popup {
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clauseType {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-ghost);
+}
+
+.clauseValue {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-primary);
+}
+
+.closeBtn {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-ghost);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.closeBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text-muted);
+}
+
+/* Source Section */
+.source {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.sourceIcon {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-hover);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-subtle);
+  flex-shrink: 0;
+}
+
+.sourceInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.documentName {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.documentMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-ghost);
+}
+
+.docTypeBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Clause Text Section */
+.clauseTextSection {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.sectionLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-ghost);
+  margin-bottom: 10px;
+}
+
+.clauseText {
+  margin: 0;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--border-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--bg-secondary);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-ghost);
+}
+
+.viewBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.viewBtn:hover {
+  background: var(--bg-primary);
+  border-color: var(--border-secondary);
+  color: var(--text-primary);
+}
+
+/* Tooltip Wrapper */
+.tooltipWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed;
+  z-index: 1001;
+  width: 280px;
+  padding: 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.tooltipHeader {
+  margin-bottom: 6px;
+}
+
+.tooltipType {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-ghost);
+}
+
+.tooltipSource {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.tooltipText {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.tooltipHint {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Citation Value (clickable) */
+.citationValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border-bottom: 1px dashed var(--text-dim);
+  padding-bottom: 1px;
+  transition: all 0.15s;
+}
+
+.citationValue:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+.citationValue:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.citationIcon {
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.citationValue:hover .citationIcon {
+  opacity: 1;
+}

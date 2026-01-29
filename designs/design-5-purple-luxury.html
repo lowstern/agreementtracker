@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 5: Purple Luxury</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #faf9f7;
+            color: #2d2d2d;
+        }
+        
+        nav {
+            padding: 32px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #faf9f7;
+            border-bottom: 1px solid #e8e5e0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #6b46c1;
+            font-style: italic;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #5a5a5a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-purple {
+            background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%);
+            color: #ffffff;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .hero-luxury {
+            padding: 120px 80px;
+            background: linear-gradient(180deg, #faf9f7 0%, #f5f3ef 100%);
+            text-align: center;
+        }
+        
+        .hero-luxury h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 88px;
+            font-weight: 900;
+            color: #2d2d2d;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            font-style: italic;
+        }
+        
+        .hero-luxury .subtitle {
+            font-size: 24px;
+            color: #6b46c1;
+            margin-bottom: 24px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .hero-luxury p {
+            font-size: 20px;
+            color: #5a5a5a;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .btn-large {
+            padding: 18px 48px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%);
+            color: #ffffff;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #6b46c1;
+            border: 2px solid #6b46c1;
+        }
+        
+        .trust-bar {
+            padding: 60px 80px;
+            background: #ffffff;
+            border-top: 1px solid #e8e5e0;
+            border-bottom: 1px solid #e8e5e0;
+            text-align: center;
+        }
+        
+        .trust-label {
+            font-size: 12px;
+            color: #999999;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            font-size: 18px;
+            color: #d0d0d0;
+            font-weight: 600;
+        }
+        
+        .features-luxury {
+            padding: 120px 80px;
+            background: #faf9f7;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 900;
+            color: #2d2d2d;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #5a5a5a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+        }
+        
+        .feature-luxury {
+            background: #ffffff;
+            padding: 48px;
+            border-radius: 12px;
+            border: 1px solid #e8e5e0;
+        }
+        
+        .feature-luxury h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .feature-luxury p {
+            font-size: 17px;
+            color: #5a5a5a;
+            line-height: 1.8;
+        }
+        
+        .testimonial-section {
+            padding: 120px 80px;
+            background: linear-gradient(135deg, #6b46c1 0%, #8b5cf6 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .testimonial-section blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto 32px;
+            line-height: 1.5;
+        }
+        
+        .testimonial-author {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .cta-luxury {
+            padding: 120px 80px;
+            background: #ffffff;
+            text-align: center;
+        }
+        
+        .cta-luxury h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 900;
+            color: #2d2d2d;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .cta-luxury p {
+            font-size: 20px;
+            color: #5a5a5a;
+            margin-bottom: 48px;
+        }
+        
+        footer {
+            padding: 60px 80px;
+            background: #2d2d2d;
+            color: #999999;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: #6b46c1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Agreement Tracker</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="btn-purple">Request Access</a>
+        </div>
+    </nav>
+    
+    <section class="hero-luxury">
+        <div class="subtitle">Premium Platform</div>
+        <h1>Elegance Meets<br>Precision</h1>
+        <p>Transform your LP agreements into structured data with a platform designed for discerning fund managers who demand excellence.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-large btn-primary">Experience Demo</a>
+            <a href="#" class="btn-large btn-outline">Learn More</a>
+        </div>
+    </section>
+    
+    <section class="trust-bar">
+        <div class="trust-label">Trusted by Distinguished Firms</div>
+        <div class="trust-logos">
+            <div>ACME Capital</div>
+            <div>Vertex Partners</div>
+            <div>Summit Ventures</div>
+        </div>
+    </section>
+    
+    <section class="features-luxury">
+        <div class="features-container">
+            <div class="section-header">
+                <h2>Crafted Excellence</h2>
+                <p>Every detail refined for the perfect experience</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-luxury">
+                    <h3>Intelligent Extraction</h3>
+                    <p>Our AI meticulously extracts every term, fee, and commitment from your agreements. Each data point is elegantly traced to its source, ensuring complete transparency and confidence.</p>
+                </div>
+                <div class="feature-luxury">
+                    <h3>Refined Citations</h3>
+                    <p>Click any value to reveal its exact origin. Every number, date, and term is fully traceable, providing the assurance you need for critical decisions.</p>
+                </div>
+                <div class="feature-luxury">
+                    <h3>Sophisticated Resolution</h3>
+                    <p>When documents conflict, our elegant hierarchy system determines precedence with precision, while offering you ultimate control when needed.</p>
+                </div>
+                <div class="feature-luxury">
+                    <h3>Premium Modeling</h3>
+                    <p>Model fee scenarios with real-time calculations. Understand tier structures and discounts with crystal clarity through our refined interface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonial-section">
+        <blockquote>"Agreement Tracker has elevated our entire operation. The attention to detail is extraordinary."</blockquote>
+        <div class="testimonial-author">Sarah Chen, Partner at Vertex Capital</div>
+    </section>
+    
+    <section class="cta-luxury">
+        <h2>Begin Your Journey</h2>
+        <p>Experience the pinnacle of agreement management</p>
+        <a href="#" class="btn-large btn-primary">Schedule Private Demo</a>
+    </section>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+        </div>
+        <div class="footer-text">© 2026 Agreement Tracker. All rights reserved.</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design 1: Minimal & Clean</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #FAFAFA;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+    
+    /* Header */
+    .header {
+      background: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: #000;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon svg { width: 20px; height: 20px; }
+    .logo h1 { font-size: 18px; font-weight: 600; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user-name { color: #666; font-size: 14px; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-ghost { background: transparent; color: #666; }
+    .btn-ghost:hover { background: #f5f5f5; }
+    
+    /* Tabs */
+    .tabs {
+      background: white;
+      padding: 0 40px;
+      display: flex;
+      gap: 32px;
+      border-bottom: 1px solid #eee;
+    }
+    .tab {
+      padding: 16px 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #888;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab:hover { color: #1a1a1a; }
+    .tab.active {
+      color: #1a1a1a;
+      border-bottom-color: #1a1a1a;
+    }
+    
+    /* Main */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .page-header h2 { font-size: 24px; font-weight: 600; }
+    .search-box {
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      width: 280px;
+    }
+    .search-box:focus { outline: none; border-color: #999; }
+    
+    .btn-primary {
+      background: #1a1a1a;
+      color: white;
+    }
+    .btn-primary:hover { background: #333; }
+    
+    /* Table */
+    .card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #fafafa;
+      font-weight: 500;
+      color: #666;
+      border-bottom: 1px solid #eee;
+    }
+    tr:not(:last-child) td { border-bottom: 1px solid #f5f5f5; }
+    tr:hover td { background: #fafafa; }
+    .investor-name { font-weight: 500; }
+    .investor-type { color: #888; font-size: 13px; }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #f5f5f5;
+      border-radius: 100px;
+      font-size: 12px;
+      color: #666;
+    }
+    .amount { font-weight: 500; font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M9 12h6M9 16h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+        </svg>
+      </div>
+      <h1>Investor Directory</h1>
+    </div>
+    <div class="header-right">
+      <span class="user-name">Demo User</span>
+      <button class="btn btn-ghost">Sign out</button>
+    </div>
+  </header>
+  
+  <nav class="tabs">
+    <button class="tab active">Investor Directory</button>
+    <button class="tab">Agreements & Documents</button>
+    <button class="tab">Fee Logic View</button>
+  </nav>
+  
+  <main>
+    <div class="page-header">
+      <h2>Investors</h2>
+      <div style="display: flex; gap: 12px;">
+        <input type="search" class="search-box" placeholder="Search investors...">
+        <button class="btn btn-primary">+ Add Investor</button>
+      </div>
+    </div>
+    
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Investor</th>
+            <th>Type</th>
+            <th>Commitment</th>
+            <th>Fund</th>
+            <th>Relationship</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="investor-name">Mock Capital LP</div>
+              <div class="investor-type">Primary contact: John Smith</div>
+            </td>
+            <td><span class="tag">LP</span></td>
+            <td class="amount">$250,000,000</td>
+            <td>Mock Fund I</td>
+            <td>Side letter for fee break</td>
+            <td><button class="btn btn-ghost">Edit</button></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="investor-name">Atlas Family Office</div>
+              <div class="investor-type">Primary contact: Sarah Chen</div>
+            </td>
+            <td><span class="tag">Family Office</span></td>
+            <td class="amount">$75,000,000</td>
+            <td>Mock Fund I</td>
+            <td>Co-investment rights</td>
+            <td><button class="btn btn-ghost">Edit</button></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="investor-name">Meridian Pension Fund</div>
+              <div class="investor-type">Primary contact: Michael Brown</div>
+            </td>
+            <td><span class="tag">Institutional</span></td>
+            <td class="amount">$500,000,000</td>
+            <td>Mock Fund II</td>
+            <td>MFN clause</td>
+            <td><button class="btn btn-ghost">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

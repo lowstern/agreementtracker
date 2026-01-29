@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design 2: Corporate Enterprise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #f0f2f5;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+    
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.5px; }
+    .logo span { font-size: 12px; opacity: 0.7; margin-left: 12px; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      background: #3b82f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .user-name { font-size: 14px; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+    
+    /* Tabs */
+    .tabs {
+      background: white;
+      padding: 0 32px;
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .tab {
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab:hover { color: #1e3a5f; background: #f8fafc; }
+    .tab.active {
+      color: #1e3a5f;
+      border-bottom-color: #3b82f6;
+      background: #f8fafc;
+    }
+    
+    /* Main */
+    main { padding: 32px; }
+    
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .page-title h2 { font-size: 22px; font-weight: 600; color: #0f172a; }
+    .page-title p { color: #64748b; font-size: 14px; margin-top: 4px; }
+    
+    .actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .search-box {
+      padding: 10px 16px 10px 40px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      width: 300px;
+      background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E") 12px center/18px no-repeat;
+    }
+    .search-box:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+    
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      padding: 10px 20px;
+    }
+    .btn-primary:hover { background: #2563eb; }
+    
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+    .stat-label { font-size: 13px; color: #64748b; margin-bottom: 8px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: #0f172a; }
+    .stat-change { font-size: 12px; color: #10b981; margin-top: 4px; }
+    
+    /* Table */
+    .card {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #e2e8f0;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+    tr:not(:last-child) td { border-bottom: 1px solid #f1f5f9; }
+    tr:hover td { background: #f8fafc; }
+    .investor-name { font-weight: 600; color: #0f172a; }
+    .investor-type { color: #64748b; font-size: 13px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #dbeafe;
+      color: #1e40af;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .badge.green { background: #dcfce7; color: #166534; }
+    .amount { font-weight: 600; font-variant-numeric: tabular-nums; }
+    .actions-cell { display: flex; gap: 8px; }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 13px;
+      background: #f1f5f9;
+      color: #475569;
+      border-radius: 6px;
+    }
+    .btn-sm:hover { background: #e2e8f0; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M9 12h6M9 16h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+        </svg>
+      </div>
+      <h1>Investor Directory</h1>
+      <span>Enterprise</span>
+    </div>
+    <div class="header-right">
+      <div class="user-info">
+        <div class="avatar">DU</div>
+        <span class="user-name">Demo User</span>
+      </div>
+      <button class="btn btn-outline">Sign out</button>
+    </div>
+  </header>
+  
+  <nav class="tabs">
+    <button class="tab active">Investor Directory</button>
+    <button class="tab">Agreements & Documents</button>
+    <button class="tab">Fee Logic View</button>
+  </nav>
+  
+  <main>
+    <div class="page-header">
+      <div class="page-title">
+        <h2>Investor Directory</h2>
+        <p>Manage investor profiles, commitments, and relationships</p>
+      </div>
+      <div class="actions">
+        <input type="search" class="search-box" placeholder="Search investors...">
+        <button class="btn btn-primary">+ Add Investor</button>
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Total Investors</div>
+        <div class="stat-value">24</div>
+        <div class="stat-change">+3 this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Commitments</div>
+        <div class="stat-value">$2.4B</div>
+        <div class="stat-change">+$150M this quarter</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Agreements</div>
+        <div class="stat-value">47</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pending Reviews</div>
+        <div class="stat-value">5</div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header">
+        <span>All Investors</span>
+        <span style="color: #64748b; font-weight: 400; font-size: 14px;">24 total</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Investor</th>
+            <th>Type</th>
+            <th>Commitment</th>
+            <th>Fund</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="investor-name">Mock Capital LP</div>
+              <div class="investor-type">Side letter for fee break</div>
+            </td>
+            <td><span class="badge">LP</span></td>
+            <td class="amount">$250,000,000</td>
+            <td>Mock Fund I</td>
+            <td><span class="badge green">Active</span></td>
+            <td class="actions-cell">
+              <button class="btn btn-sm">View</button>
+              <button class="btn btn-sm">Edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="investor-name">Atlas Family Office</div>
+              <div class="investor-type">Co-investment rights</div>
+            </td>
+            <td><span class="badge">Family Office</span></td>
+            <td class="amount">$75,000,000</td>
+            <td>Mock Fund I</td>
+            <td><span class="badge green">Active</span></td>
+            <td class="actions-cell">
+              <button class="btn btn-sm">View</button>
+              <button class="btn btn-sm">Edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="investor-name">Meridian Pension Fund</div>
+              <div class="investor-type">MFN clause, fee waiver</div>
+            </td>
+            <td><span class="badge">Institutional</span></td>
+            <td class="amount">$500,000,000</td>
+            <td>Mock Fund II</td>
+            <td><span class="badge green">Active</span></td>
+            <td class="actions-cell">
+              <button class="btn btn-sm">View</button>
+              <button class="btn btn-sm">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

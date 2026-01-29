@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Design 3: Split Screen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .split-container {
+            display: grid;
+            grid-template-columns: 45% 55%;
+            height: 100vh;
+        }
+        
+        .left-panel {
+            background: #000000;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid #333333;
+            position: relative;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .content-left h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            letter-spacing: -1.5px;
+        }
+        
+        .content-left p {
+            font-size: 20px;
+            color: #999999;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+        
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            width: fit-content;
+        }
+        
+        .stats-left {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .stat-item {
+            border-top: 2px solid #333333;
+            padding-top: 16px;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .right-panel {
+            background: #111111;
+            padding: 80px 60px;
+            overflow-y: auto;
+        }
+        
+        .features-right {
+            max-width: 600px;
+        }
+        
+        .feature-section {
+            margin-bottom: 64px;
+        }
+        
+        .feature-number {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .feature-section h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+        
+        .feature-section p {
+            font-size: 16px;
+            color: #999999;
+            line-height: 1.8;
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #333333;
+            border-radius: 50%;
+        }
+        
+        .dot.active {
+            background: #ffffff;
+        }
+        
+        .cta-section {
+            margin-top: 100px;
+            padding: 48px;
+            background: #000000;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            color: #666666;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        <div class="left-panel">
+            <div class="logo">Agreement Tracker</div>
+            <div class="content-left">
+                <h1>Turn contracts into structured data</h1>
+                <p>Extract, organize, and manage LP agreements with complete source transparency. Built for fund managers who need precision.</p>
+                <a href="#" class="btn-primary">Request Demo</a>
+                
+                <div class="stats-left">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Citation</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10x</div>
+                        <div class="stat-label">Faster</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Zero</div>
+                        <div class="stat-label">Manual</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="features-right">
+                <div class="feature-section">
+                    <div class="feature-number">01</div>
+                    <h3>AI Document Extraction</h3>
+                    <p>Upload any agreement and our AI automatically extracts all terms, fees, and commitments. Every data point is linked back to its source clause for complete transparency and auditability.</p>
+                </div>
+                
+                <div class="feature-section">
+                    <div class="feature-number">02</div>
+                    <h3>Conflict Resolution</h3>
+                    <p>When multiple documents contain different terms, our smart hierarchy system automatically determines which terms apply based on document type, dates, and priority rules.</p>
+                </div>
+                
+                <div class="feature-section">
+                    <div class="feature-number">03</div>
+                    <h3>Fee Modeling</h3>
+                    <p>Calculate fees in real-time with tier structures, step-downs, and discount rules. Model different scenarios to understand the financial impact instantly.</p>
+                </div>
+                
+                <div class="feature-section">
+                    <div class="feature-number">04</div>
+                    <h3>Investor Directory</h3>
+                    <p>Centralized repository for all LP data with powerful search and relationship management. Your single source of truth for all investor information.</p>
+                </div>
+                
+                <div class="cta-section">
+                    <h3>Ready to get started?</h3>
+                    <p>Transform your agreement management today</p>
+                    <a href="#" class="btn-primary">Schedule Demo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</body>
+</html>

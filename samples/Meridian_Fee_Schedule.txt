@@ -1,0 +1,62 @@
+FEE SCHEDULE
+
+MERIDIAN PENSION FUND
+Fee Schedule for Investment in Mock Fund I, LP
+
+Effective Date: December 1, 2023
+Commitment Amount: $75,000,000
+
+================================================================================
+MANAGEMENT FEES
+================================================================================
+
+Investment Period (Years 1-5):
+  Base Rate:                    1.50% per annum
+  Calculation Basis:            Capital Commitment
+  Payment Frequency:            Quarterly in advance
+
+Post-Investment Period (Years 6+):
+  Base Rate:                    1.25% per annum
+  Calculation Basis:            Invested Capital
+  Payment Frequency:            Quarterly in advance
+
+================================================================================
+FEE OFFSETS
+================================================================================
+
+The following fees received by the General Partner or its affiliates shall be 
+offset against Management Fees:
+
+  Transaction Fees:             100% offset
+  Monitoring Fees:              80% offset
+  Director Fees:                100% offset
+  Break-up Fees:                50% offset
+
+================================================================================
+CARRIED INTEREST
+================================================================================
+
+  Carried Interest Rate:        20%
+  Preferred Return:             8% per annum (compounded annually)
+  Catch-up:                     100% to GP until 20/80 split achieved
+  Clawback:                     Yes, subject to tax gross-up
+
+================================================================================
+OTHER FEES
+================================================================================
+
+  Organizational Expenses:      Capped at $500,000
+  Partnership Expenses:         Pass-through (at cost)
+  Broken Deal Expenses:         Shared pro-rata among all partners
+
+================================================================================
+
+This Fee Schedule is incorporated by reference into the Limited Partnership 
+Agreement dated December 1, 2023.
+
+Acknowledged and Agreed:
+
+MERIDIAN PENSION FUND                    MOCK FUND I, LP
+
+_________________________               _________________________
+Date: December 1, 2023                  Date: December 1, 2023

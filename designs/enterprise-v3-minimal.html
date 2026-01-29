@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1c1c1c;
+            background: #fafafa;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e8e8e8;
+            padding: 20px 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1c1c1c;
+            letter-spacing: -0.3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666666;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #1c1c1c;
+        }
+        
+        .btn {
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #1c1c1c;
+            color: #ffffff;
+        }
+        
+        .btn-primary:hover {
+            background: #333333;
+        }
+        
+        .hero {
+            padding: 200px 64px 120px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 600;
+            color: #1c1c1c;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -2px;
+            max-width: 800px;
+        }
+        
+        .hero p {
+            font-size: 22px;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .btn-secondary {
+            background: #ffffff;
+            color: #1c1c1c;
+            border: 1px solid #d0d0d0;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #1c1c1c;
+        }
+        
+        .visual-section {
+            padding: 80px 64px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .app-visual {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 80px 60px;
+            text-align: center;
+            color: #d0d0d0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .companies {
+            padding: 80px 64px;
+            text-align: center;
+            border-top: 1px solid #e8e8e8;
+            background: #ffffff;
+        }
+        
+        .companies-label {
+            font-size: 12px;
+            color: #999999;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        
+        .company-list {
+            display: flex;
+            justify-content: center;
+            gap: 72px;
+            flex-wrap: wrap;
+        }
+        
+        .company-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #cccccc;
+        }
+        
+        .features {
+            padding: 140px 64px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .features h2 {
+            font-size: 48px;
+            font-weight: 600;
+            color: #1c1c1c;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+        
+        .features-intro {
+            font-size: 20px;
+            color: #666666;
+            margin-bottom: 80px;
+            max-width: 600px;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+        }
+        
+        .feature {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+        
+        .feature-content h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1c1c1c;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        
+        .feature-content p {
+            font-size: 17px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .feature-points {
+            list-style: none;
+        }
+        
+        .feature-points li {
+            font-size: 15px;
+            color: #666666;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .feature-points li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #cccccc;
+        }
+        
+        .feature-visual {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 60px 40px;
+            text-align: center;
+            color: #d0d0d0;
+            font-size: 14px;
+        }
+        
+        .stats {
+            padding: 100px 64px;
+            background: #1c1c1c;
+            color: #ffffff;
+        }
+        
+        .stats-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+        }
+        
+        .stat h3 {
+            font-size: 52px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -1px;
+        }
+        
+        .stat p {
+            font-size: 16px;
+            color: #999999;
+        }
+        
+        .principles {
+            padding: 140px 64px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .principles h2 {
+            font-size: 48px;
+            font-weight: 600;
+            color: #1c1c1c;
+            margin-bottom: 80px;
+            letter-spacing: -1.5px;
+        }
+        
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 64px;
+        }
+        
+        .principle h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1c1c1c;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        
+        .principle p {
+            font-size: 16px;
+            color: #666666;
+            line-height: 1.6;
+        }
+        
+        .cta {
+            padding: 140px 64px;
+            text-align: center;
+            border-top: 1px solid #e8e8e8;
+            background: #ffffff;
+        }
+        
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 600;
+            color: #1c1c1c;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+        
+        .cta p {
+            font-size: 20px;
+            color: #666666;
+            margin-bottom: 48px;
+        }
+        
+        footer {
+            padding: 80px 64px 48px;
+            background: #fafafa;
+            border-top: 1px solid #e8e8e8;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 64px;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+        
+        .footer-brand p {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+        }
+        
+        .footer-links h4 {
+            font-size: 13px;
+            color: #1c1c1c;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+        
+        .footer-links a {
+            font-size: 14px;
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #1c1c1c;
+        }
+        
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 48px;
+            border-top: 1px solid #e8e8e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-bottom p {
+            font-size: 13px;
+            color: #999999;
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-legal a {
+            font-size: 13px;
+            color: #666666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Agreement Tracker</div>
+        <div class="nav-links">
+            <a href="#product">Product</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="btn btn-primary">Request Demo</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Contract data, extracted and organized</h1>
+        <p>Agreement Tracker turns legal documents into structured data. Built for fund managers who need precision and transparency.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-secondary">Documentation</a>
+        </div>
+    </section>
+    
+    <section class="visual-section">
+        <div class="app-visual">Product Interface</div>
+    </section>
+    
+    <section class="companies">
+        <p class="companies-label">Trusted by fund managers</p>
+        <div class="company-list">
+            <div class="company-name">ACME Capital</div>
+            <div class="company-name">Vertex</div>
+            <div class="company-name">Summit Ventures</div>
+            <div class="company-name">Peak</div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2>How it works</h2>
+        <p class="features-intro">Upload agreements, extract terms automatically, and access everything with complete source transparency.</p>
+        
+        <div class="feature-list">
+            <div class="feature">
+                <div class="feature-content">
+                    <h3>Document extraction</h3>
+                    <p>Upload any agreement and our AI extracts all key terms, fees, commitments, and special provisions. Every data point is linked back to its source clause.</p>
+                    <ul class="feature-points">
+                        <li>AI-powered extraction</li>
+                        <li>Support for all document formats</li>
+                        <li>100% citation coverage</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">Extraction Interface</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-content">
+                    <h3>Conflict resolution</h3>
+                    <p>When multiple documents contain different terms, automatic hierarchy rules determine which applies. Side letters override subscription agreements. Later documents override earlier ones.</p>
+                    <ul class="feature-points">
+                        <li>Automatic document hierarchy</li>
+                        <li>Date-based precedence</li>
+                        <li>Manual override when needed</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">Hierarchy View</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-content">
+                    <h3>Fee modeling</h3>
+                    <p>Calculate fees in real-time with tier structures, step-downs, and discount rules. Model different scenarios to understand the financial impact of various commitment amounts.</p>
+                    <ul class="feature-points">
+                        <li>Real-time calculations</li>
+                        <li>Tier and discount support</li>
+                        <li>Scenario modeling</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">Calculator Interface</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat">
+                <h3>100%</h3>
+                <p>Source citation coverage</p>
+            </div>
+            <div class="stat">
+                <h3>10x</h3>
+                <p>Faster term lookup</p>
+            </div>
+            <div class="stat">
+                <h3>Zero</h3>
+                <p>Manual data entry</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="principles">
+        <h2>Built on transparency</h2>
+        <div class="principle-grid">
+            <div class="principle">
+                <h3>Documents as source of truth</h3>
+                <p>Every piece of data comes directly from your legal documents. No manual entry means no transcription errors.</p>
+            </div>
+            <div class="principle">
+                <h3>Complete traceability</h3>
+                <p>Click any value to see the exact clause it came from. Full audit trail for compliance and verification.</p>
+            </div>
+            <div class="principle">
+                <h3>Designed for scale</h3>
+                <p>From 10 investors to 10,000. The system grows with your fund without performance degradation.</p>
+            </div>
+            <div class="principle">
+                <h3>Enterprise security</h3>
+                <p>Bank-level encryption, SOC 2 compliance, and secure infrastructure. Your agreements are always protected.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <h2>Get started today</h2>
+        <p>See how Agreement Tracker transforms fund operations</p>
+        <a href="#" class="btn btn-primary">Schedule Demo</a>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">Agreement Tracker</div>
+                <p>Enterprise agreement management for fund managers.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Agreement Tracker</p>
+            <div class="footer-legal">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

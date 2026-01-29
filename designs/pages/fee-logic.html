@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Logic View - Investor Directory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #1c1c1c;
+      color: #d4d4d4;
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr 380px;
+      height: 100vh;
+    }
+    
+    /* Left Panel */
+    .left-panel {
+      background: #141414;
+      border-right: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .panel-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: #2a2a2a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #3a3a3a;
+    }
+    .logo-icon svg { width: 20px; height: 20px; stroke: #808080; }
+    .logo h1 { font-size: 16px; font-weight: 500; color: #a0a0a0; }
+    
+    .search-box {
+      width: 100%;
+      padding: 10px 14px;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      color: #d4d4d4;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .search-box::placeholder { color: #525252; }
+    .search-box:focus { outline: none; border-color: #404040; }
+    
+    .nav-tabs {
+      display: flex;
+      padding: 12px 16px;
+      gap: 8px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .nav-tab {
+      flex: 1;
+      padding: 8px;
+      background: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #606060;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-tab:hover { color: #a0a0a0; background: #1c1c1c; }
+    .nav-tab.active { color: #d4d4d4; background: #2a2a2a; }
+    
+    .list-header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .list-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+    }
+    
+    .investor-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px;
+    }
+    
+    .investor-item {
+      padding: 14px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 2px;
+      transition: all 0.15s;
+      border-left: 2px solid transparent;
+    }
+    .investor-item:hover { background: #1c1c1c; }
+    .investor-item.active {
+      background: #1c1c1c;
+      border-left-color: #808080;
+    }
+    .investor-name { font-weight: 500; margin-bottom: 4px; color: #e0e0e0; }
+    .investor-meta { font-size: 13px; color: #606060; }
+    
+    /* Center Panel */
+    .center-panel {
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .detail-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .detail-title { font-size: 22px; font-weight: 600; margin-bottom: 6px; color: #f0f0f0; }
+    .detail-subtitle { color: #606060; font-size: 14px; }
+    
+    .detail-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px;
+    }
+    
+    /* Fee Calculator */
+    .calc-section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+      margin-bottom: 16px;
+    }
+    
+    .input-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .input-item {
+      padding: 16px;
+      background: #141414;
+      border-radius: 6px;
+      border: 1px solid #2a2a2a;
+    }
+    .input-label {
+      font-size: 12px;
+      color: #606060;
+      margin-bottom: 8px;
+    }
+    .input-field {
+      width: 100%;
+      padding: 10px 12px;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      color: #d4d4d4;
+      font-size: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .input-field:focus { outline: none; border-color: #404040; }
+    
+    /* Results */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .result-card {
+      padding: 20px;
+      background: #141414;
+      border-radius: 6px;
+      border: 1px solid #2a2a2a;
+      text-align: center;
+    }
+    .result-card.highlight {
+      border-color: #3a3a3a;
+      background: #1a1a1a;
+    }
+    .result-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #525252;
+      margin-bottom: 8px;
+    }
+    .result-value {
+      font-size: 28px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      color: #e0e0e0;
+    }
+    .result-value.accent { color: #b0b0b0; }
+    .result-note {
+      font-size: 11px;
+      color: #525252;
+      margin-top: 8px;
+    }
+    
+    /* Breakdown */
+    .breakdown {
+      background: #141414;
+      border-radius: 6px;
+      border: 1px solid #2a2a2a;
+      overflow: hidden;
+    }
+    .breakdown-header {
+      padding: 14px 16px;
+      background: #0a0a0a;
+      font-size: 12px;
+      font-weight: 500;
+      color: #808080;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-row.total {
+      background: #1a1a1a;
+      font-weight: 500;
+    }
+    .breakdown-label { color: #808080; font-size: 14px; }
+    .breakdown-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+    .breakdown-source {
+      font-size: 11px;
+      color: #404040;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+    .breakdown-source:hover { color: #606060; }
+    
+    /* Right Panel - Terms */
+    .right-panel {
+      background: #141414;
+      border-left: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .terms-header {
+      padding: 20px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .terms-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e0e0e0;
+      margin-bottom: 4px;
+    }
+    .terms-subtitle {
+      font-size: 12px;
+      color: #606060;
+    }
+    
+    .terms-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    
+    .term-card {
+      padding: 14px;
+      background: #1c1c1c;
+      border-radius: 6px;
+      border: 1px solid #2a2a2a;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .term-card:hover { border-color: #3a3a3a; }
+    .term-card.active { border-color: #505050; }
+    .term-type {
+      font-size: 12px;
+      color: #606060;
+      margin-bottom: 4px;
+    }
+    .term-value {
+      font-size: 18px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      color: #b0b0b0;
+      margin-bottom: 4px;
+    }
+    .term-source {
+      font-size: 11px;
+      color: #404040;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .term-text {
+      font-size: 12px;
+      color: #525252;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #2a2a2a;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="left-panel">
+      <div class="panel-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M9 12h6M9 16h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+            </svg>
+          </div>
+          <h1>Investor Directory</h1>
+        </div>
+        <input type="search" class="search-box" placeholder="Search...">
+      </div>
+      
+      <div class="nav-tabs">
+        <button class="nav-tab">Investors</button>
+        <button class="nav-tab">Documents</button>
+        <button class="nav-tab active">Fees</button>
+      </div>
+      
+      <div class="list-header">
+        <span class="list-title">Select Investor</span>
+      </div>
+      
+      <div class="investor-list">
+        <div class="investor-item active">
+          <div class="investor-name">Mock Capital LP</div>
+          <div class="investor-meta">$250M · Mock Fund I</div>
+        </div>
+        <div class="investor-item">
+          <div class="investor-name">Atlas Family Office</div>
+          <div class="investor-meta">$75M · Mock Fund I</div>
+        </div>
+        <div class="investor-item">
+          <div class="investor-name">Meridian Pension Fund</div>
+          <div class="investor-meta">$500M · Mock Fund II</div>
+        </div>
+        <div class="investor-item">
+          <div class="investor-name">Horizon Endowment</div>
+          <div class="investor-meta">$125M · Mock Fund I</div>
+        </div>
+      </div>
+    </aside>
+    
+    <main class="center-panel">
+      <div class="detail-header">
+        <h2 class="detail-title">Fee Calculator</h2>
+        <p class="detail-subtitle">Mock Capital LP · Mock Fund I</p>
+      </div>
+      
+      <div class="detail-content">
+        <div class="calc-section">
+          <h3 class="section-title">Scenario Parameters</h3>
+          <div class="input-group">
+            <div class="input-item">
+              <div class="input-label">Commitment Amount</div>
+              <input type="text" class="input-field" value="$250,000,000">
+            </div>
+            <div class="input-item">
+              <div class="input-label">Investment Year</div>
+              <input type="text" class="input-field" value="Year 2">
+            </div>
+          </div>
+        </div>
+        
+        <div class="calc-section">
+          <h3 class="section-title">Calculated Results</h3>
+          <div class="results-grid">
+            <div class="result-card">
+              <div class="result-label">Base Rate</div>
+              <div class="result-value">2.00%</div>
+              <div class="result-note">Standard rate</div>
+            </div>
+            <div class="result-card highlight">
+              <div class="result-label">Effective Rate</div>
+              <div class="result-value accent">1.75%</div>
+              <div class="result-note">After discounts</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Annual Fee</div>
+              <div class="result-value">$4.375M</div>
+              <div class="result-note">Per year</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="calc-section">
+          <h3 class="section-title">Fee Breakdown</h3>
+          <div class="breakdown">
+            <div class="breakdown-header">Calculation Steps</div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Base Management Fee</span>
+              <span>
+                <span class="breakdown-value">2.00%</span>
+                <span class="breakdown-source">PPM §6.1</span>
+              </span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Large Commitment Discount</span>
+              <span>
+                <span class="breakdown-value">-0.25%</span>
+                <span class="breakdown-source">Side Letter §3.2</span>
+              </span>
+            </div>
+            <div class="breakdown-row total">
+              <span class="breakdown-label">Effective Rate</span>
+              <span class="breakdown-value">1.75%</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">× Commitment</span>
+              <span class="breakdown-value">$250,000,000</span>
+            </div>
+            <div class="breakdown-row total">
+              <span class="breakdown-label">Annual Fee</span>
+              <span class="breakdown-value">$4,375,000</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="calc-section">
+          <h3 class="section-title">Future Projections</h3>
+          <div class="breakdown">
+            <div class="breakdown-header">Year-by-Year</div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Years 1-3</span>
+              <span class="breakdown-value">$4,375,000 /yr @ 1.75%</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Years 4+</span>
+              <span class="breakdown-value">$3,750,000 /yr @ 1.50%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <aside class="right-panel">
+      <div class="terms-header">
+        <div class="terms-title">Effective Terms</div>
+        <div class="terms-subtitle">Click to view source clause</div>
+      </div>
+      
+      <div class="terms-content">
+        <div class="term-card active">
+          <div class="term-type">Management Fee</div>
+          <div class="term-value">1.75%</div>
+          <div class="term-source">Side Letter §3.2</div>
+          <div class="term-text">"the Management Fee payable by the Limited Partner shall be reduced to 1.75% per annum"</div>
+        </div>
+        
+        <div class="term-card">
+          <div class="term-type">Fee Step-Down</div>
+          <div class="term-value">Year 4: -0.25%</div>
+          <div class="term-source">Side Letter §3.3</div>
+        </div>
+        
+        <div class="term-card">
+          <div class="term-type">MFN Protection</div>
+          <div class="term-value">Enabled</div>
+          <div class="term-source">Side Letter §5.1</div>
+        </div>
+        
+        <div class="term-card">
+          <div class="term-type">Commitment Threshold</div>
+          <div class="term-value">≥ $250M</div>
+          <div class="term-source">Side Letter §3.2</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>

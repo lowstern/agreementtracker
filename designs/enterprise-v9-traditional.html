@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agreement Tracker - Enterprise Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        nav {
+            position: fixed;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #d0d0d0;
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: #0066cc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+        
+        .btn {
+            padding: 11px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #0066cc;
+            color: #ffffff;
+        }
+        
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+        
+        .hero {
+            padding: 200px 80px 140px;
+            background: #f5f5f5;
+        }
+        
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 28px;
+            letter-spacing: -1px;
+        }
+        
+        .hero-content p {
+            font-size: 19px;
+            color: #555555;
+            line-height: 1.7;
+            margin-bottom: 42px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+        }
+        
+        .btn-secondary {
+            background: #ffffff;
+            color: #0066cc;
+            border: 2px solid #d0d0d0;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #0066cc;
+        }
+        
+        .hero-visual {
+            background: #ffffff;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 48px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .visual-placeholder {
+            background: #f5f5f5;
+            border: 1px solid #d0d0d0;
+            height: 440px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999999;
+            font-size: 17px;
+            font-weight: 500;
+        }
+        
+        .trust-section {
+            padding: 60px 80px;
+            background: #ffffff;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .trust-label {
+            font-size: 12px;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .trust-logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #cccccc;
+        }
+        
+        .features {
+            padding: 120px 80px;
+            background: #ffffff;
+        }
+        
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #555555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 36px;
+        }
+        
+        .feature-card {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #e6f2ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 26px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 14px;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            color: #555555;
+            line-height: 1.7;
+        }
+        
+        .benefits {
+            padding: 120px 80px;
+            background: #f5f5f5;
+        }
+        
+        .benefits-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 36px;
+        }
+        
+        .benefit-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 48px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+        }
+        
+        .benefit-card p {
+            font-size: 17px;
+            color: #555555;
+            line-height: 1.7;
+        }
+        
+        .stats-section {
+            padding: 100px 80px;
+            background: #0066cc;
+            color: #ffffff;
+        }
+        
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 54px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .process {
+            padding: 120px 80px;
+            background: #ffffff;
+        }
+        
+        .process-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-top: 60px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: #0066cc;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0 auto 28px;
+        }
+        
+        .process-step h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .process-step p {
+            font-size: 17px;
+            color: #555555;
+            line-height: 1.7;
+        }
+        
+        .cta {
+            padding: 120px 80px;
+            background: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 42px;
+        }
+        
+        .cta .btn-primary {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+        
+        .cta .btn-primary:hover {
+            background: #f5f5f5;
+        }
+        
+        footer {
+            padding: 80px 80px 50px;
+            background: #1a1a1a;
+            color: #999999;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 22px;
+            color: #ffffff;
+        }
+        
+        .footer-brand p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #999999;
+        }
+        
+        .footer-links h4 {
+            font-size: 14px;
+            color: #ffffff;
+            margin-bottom: 22px;
+            font-weight: 700;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+        
+        .footer-links a {
+            font-size: 15px;
+            color: #999999;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+        
+        .footer-bottom {
+            padding-top: 50px;
+            border-top: 1px solid #333333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-bottom p {
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-legal a {
+            font-size: 14px;
+            color: #666666;
+            text-decoration: none;
+        }
+        
+        .footer-legal a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">A</div>
+            Agreement Tracker
+        </div>
+        <div class="nav-links">
+            <a href="#product">Product</a>
+            <a href="#features">Features</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="btn btn-primary">Request Demo</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Enterprise Agreement Management for Fund Managers</h1>
+                <p>Extract, organize, and manage LP agreements with complete source transparency. Built for teams who need precision and reliability.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-placeholder">Product Dashboard</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="trust-section">
+        <div class="trust-container">
+            <p class="trust-label">Trusted by Leading Fund Managers</p>
+            <div class="trust-logos">
+                <div class="trust-logo">ACME Capital</div>
+                <div class="trust-logo">Vertex Partners</div>
+                <div class="trust-logo">Summit Ventures</div>
+                <div class="trust-logo">Peak Investments</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2>Comprehensive Platform Features</h2>
+                <p>Everything you need to manage LP agreements at scale, with complete transparency and traceability</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>AI Document Extraction</h3>
+                    <p>Automatically extract terms, fees, and commitments from any legal document. Zero manual data entry required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Source Citations</h3>
+                    <p>Every data point links directly to its source clause. Click any value to see the exact text it came from.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Conflict Resolution</h3>
+                    <p>Automatic hierarchy rules determine which terms apply when documents conflict. Manual override available.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Fee Modeling</h3>
+                    <p>Real-time fee calculations with tier structures and discount rules. Model scenarios instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Investor Directory</h3>
+                    <p>Centralized repository for all LP data with powerful search and relationship management tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <h3>Email Integration</h3>
+                    <p>Forward agreements to your dedicated inbox. Automatic processing and extraction on receipt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits">
+        <div class="benefits-container">
+            <div class="section-header">
+                <h2>Why Choose Agreement Tracker</h2>
+                <p>Built specifically for fund managers who need reliability, transparency, and precision</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>Complete Transparency</h3>
+                    <p>Every data point is traceable back to its source document. Click any value to see the exact clause it came from, ensuring complete auditability and compliance.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-level encryption, SOC 2 compliance, and secure infrastructure. Your sensitive agreements are always protected with enterprise-grade security measures.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Scalable Architecture</h3>
+                    <p>From 10 investors to 10,000, Agreement Tracker grows with your fund. No performance degradation as your data scales to meet enterprise needs.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Time Savings</h3>
+                    <p>Find investor terms in seconds instead of hours. Eliminate manual spreadsheet management and reduce lookup time by 10x, freeing your team for strategic work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Source Citation Coverage</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10x</div>
+                <div class="stat-label">Faster Term Lookup</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">Zero</div>
+                <div class="stat-label">Manual Data Entry</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="process">
+        <div class="process-container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Three simple steps to transform your agreement management</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Documents</h3>
+                    <p>Drag and drop agreements or forward via email. All document formats supported with automatic processing.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Automatic Extraction</h3>
+                    <p>AI reads and extracts all key terms, creating a structured database with complete source citations.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Instant Access</h3>
+                    <p>Search, filter, and analyze your agreements. Every value links back to its source for complete transparency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Ready to Get Started?</h2>
+            <p>See how Agreement Tracker can transform your fund management operations</p>
+            <a href="#" class="btn btn-primary">Schedule a Demo</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">A</div>
+                        Agreement Tracker
+                    </div>
+                    <p>Enterprise agreement management platform for fund managers.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Guides</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Agreement Tracker. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

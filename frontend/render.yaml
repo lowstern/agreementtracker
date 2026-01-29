@@ -1,0 +1,14 @@
+# Render Blueprint for Agreement Tracker Frontend
+services:
+  - type: static
+    name: agreement-tracker-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://agreement-tracker-api.onrender.com

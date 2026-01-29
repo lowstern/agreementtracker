@@ -1,0 +1,685 @@
+/* Investor List */
+.investorList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px;
+}
+
+.investorItem {
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+
+.investorItem:hover {
+  background: var(--bg-primary);
+}
+
+.investorItem.active {
+  background: var(--bg-primary);
+  border-left-color: var(--text-subtle);
+}
+
+.investorName {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.investorMeta {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.investorCommitment {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-subtle);
+  margin-top: 8px;
+}
+
+.addBtn {
+  margin: 12px;
+  padding: 10px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+
+.addBtn:hover {
+  background: var(--bg-active);
+  border-color: var(--border-hover);
+}
+
+/* Loading and Empty States */
+.loadingState,
+.emptyState {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 13px;
+}
+
+/* Status Badge */
+.statusBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+/* Detail Content */
+.detailContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+}
+
+/* Info Grid */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.infoCard {
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-primary);
+}
+
+.infoCard.full {
+  grid-column: 1 / -1;
+}
+
+.infoLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-ghost);
+  margin-bottom: 6px;
+}
+
+.infoValue {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.infoValue.large {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.infoValue.muted {
+  color: var(--text-subtle);
+  line-height: 1.6;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-ghost);
+  margin-bottom: 16px;
+}
+
+/* Terms Summary */
+.termsSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.termCard {
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-primary);
+}
+
+.termType {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+}
+
+.termValue {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.citationIcon {
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+
+.termCard:hover .citationIcon {
+  opacity: 0.8;
+}
+
+.termSource {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Placeholder States */
+.placeholderState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+  text-align: center;
+}
+
+.placeholderState p {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.placeholderState span {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* No Selection State */
+.noSelection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+}
+
+.noSelection p {
+  color: var(--text-faint);
+}
+
+/* Document Preview Panel */
+.docHeader {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--light-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.docTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--light-text);
+}
+
+.docMeta {
+  font-size: 11px;
+  color: var(--light-subtle);
+}
+
+.docPreview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--light-subtle);
+}
+
+.docPlaceholder svg {
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.docPlaceholder p {
+  font-weight: 500;
+  color: var(--light-muted);
+  margin-bottom: 4px;
+}
+
+.docPlaceholder span {
+  font-size: 12px;
+}
+
+/* Documents List */
+.documentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.documentItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.documentItem:hover {
+  border-color: var(--border-secondary);
+  background: var(--bg-hover);
+}
+
+.documentItem:hover .openIcon {
+  opacity: 1;
+}
+
+.documentActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.openIcon {
+  opacity: 0.3;
+  color: var(--text-faint);
+  transition: opacity 0.15s;
+}
+
+.documentIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--bg-hover);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.documentInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.documentName {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.documentMeta {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.documentBadge {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.documentBadge.green {
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+.documentBadge.blue {
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+
+.documentBadge.purple {
+  background: var(--accent-purple-bg);
+  color: var(--accent-purple);
+}
+
+.documentBadge.orange {
+  background: var(--accent-orange-bg);
+  color: var(--accent-orange);
+}
+
+.documentBadge.default {
+  background: var(--bg-hover);
+  color: var(--text-subtle);
+}
+
+.viewAllBtn {
+  margin-top: 8px;
+  padding: 12px;
+  background: none;
+  border: 1px dashed var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-faint);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.viewAllBtn:hover {
+  border-color: var(--border-secondary);
+  color: var(--text-muted);
+}
+
+/* Term Cards with Values */
+.termCard.hasValue {
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.termCard.hasValue:hover {
+  border-color: var(--border-secondary);
+  background: var(--bg-hover);
+}
+
+.sourceTag {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--bg-hover);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Effective Terms List (full view) */
+.effectiveTermsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.effectiveTermItem {
+  padding: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+}
+
+.termHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.termTypeLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.termIcon {
+  width: 28px;
+  height: 28px;
+  background: var(--bg-hover);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-subtle);
+  font-weight: 600;
+}
+
+.termSourceBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.termSourceBadge:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.termSourceBadge:hover .sourceLinkIcon {
+  opacity: 1;
+}
+
+.sourceLinkIcon {
+  opacity: 0.3;
+  transition: opacity 0.15s;
+  margin-left: 4px;
+}
+
+.docTypeBadge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.docTypeBadge.green {
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+.docTypeBadge.blue {
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+
+.docTypeBadge.purple {
+  background: var(--accent-purple-bg);
+  color: var(--accent-purple);
+}
+
+.docTypeBadge.orange {
+  background: var(--accent-orange-bg);
+  color: var(--accent-orange);
+}
+
+.docTypeBadge.default {
+  background: var(--bg-hover);
+  color: var(--text-subtle);
+}
+
+.termDetails {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.termDetailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.termDetailLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-ghost);
+}
+
+.termDetailValue {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.termClauseText {
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-faint);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* Overridden Terms */
+.overriddenSection {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-primary);
+}
+
+.overriddenLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-ghost);
+  margin-bottom: 8px;
+}
+
+.overriddenList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.overriddenItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.overriddenValue {
+  font-family: 'JetBrains Mono', monospace;
+  text-decoration: line-through;
+  color: var(--text-ghost);
+}
+
+.overriddenSource {
+  color: var(--text-ghost);
+}
+
+.overriddenReason {
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+/* Quick Document List (Right Panel) */
+.quickDocList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.quickDocItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.quickDocItem:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+}
+
+.quickDocIcon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.quickDocInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.quickDocTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quickDocMeta {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.viewAllBtn {
+  margin-top: 8px;
+  padding: 10px;
+  background: transparent;
+  border: 1px dashed var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.viewAllBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .termsSummary {
+    grid-template-columns: 1fr;
+  }
+}

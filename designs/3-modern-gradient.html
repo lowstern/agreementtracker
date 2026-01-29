@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design 3: Modern Gradient</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #1a1a2e;
+      line-height: 1.5;
+    }
+    
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      margin-bottom: 40px;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon svg { color: #667eea; }
+    .logo h1 { font-size: 18px; font-weight: 600; }
+    
+    .nav-section { margin-bottom: 32px; }
+    .nav-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 12px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      transition: all 0.2s;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
+    .nav-item.active {
+      background: white;
+      color: #667eea;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .nav-item svg { width: 20px; height: 20px; }
+    
+    .user-section {
+      margin-top: auto;
+      padding: 16px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+    .user-name { font-size: 14px; font-weight: 500; }
+    .user-email { font-size: 12px; opacity: 0.7; }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      background: #f5f7fa;
+      border-radius: 30px 0 0 30px;
+      overflow: hidden;
+    }
+    
+    .content-header {
+      padding: 32px 40px;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+    .page-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .page-title h2 {
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    }
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102,126,234,0.5);
+    }
+    
+    .search-box {
+      padding: 12px 20px;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      font-size: 14px;
+      width: 300px;
+      margin-right: 16px;
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    /* Content */
+    .content-body { padding: 32px 40px; }
+    
+    .investor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    
+    .investor-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    .investor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .investor-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .investor-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .investor-type {
+      color: #888;
+      font-size: 13px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+      color: #667eea;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .card-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .stat-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+    .stat-value { font-size: 16px; font-weight: 600; }
+    .card-footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .relationship-note {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12h6M9 16h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+          </svg>
+        </div>
+        <h1>Agreement<br>Tracker</h1>
+      </div>
+      
+      <div class="nav-section">
+        <div class="nav-label">Main</div>
+        <div class="nav-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+          Investors
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+          </svg>
+          Agreements
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+          Fee Logic
+        </div>
+      </div>
+      
+      <div class="user-section">
+        <div class="user-info">
+          <div class="avatar">DU</div>
+          <div>
+            <div class="user-name">Demo User</div>
+            <div class="user-email">demo@tracker.com</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <main class="main-content">
+      <div class="content-header">
+        <div class="page-title">
+          <h2>Investor Directory</h2>
+          <div>
+            <input type="search" class="search-box" placeholder="Search investors...">
+            <button class="btn btn-gradient">+ Add Investor</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content-body">
+        <div class="investor-grid">
+          <div class="investor-card">
+            <div class="card-header">
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <div class="investor-avatar">MC</div>
+                <div>
+                  <div class="investor-name">Mock Capital LP</div>
+                  <div class="investor-type">Limited Partner</div>
+                </div>
+              </div>
+              <span class="tag">LP</span>
+            </div>
+            <div class="card-stats">
+              <div>
+                <div class="stat-label">Commitment</div>
+                <div class="stat-value">$250M</div>
+              </div>
+              <div>
+                <div class="stat-label">Fund</div>
+                <div class="stat-value">Mock Fund I</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="relationship-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                </svg>
+                Side letter for fee break
+              </div>
+            </div>
+          </div>
+          
+          <div class="investor-card">
+            <div class="card-header">
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <div class="investor-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">AF</div>
+                <div>
+                  <div class="investor-name">Atlas Family Office</div>
+                  <div class="investor-type">Family Office</div>
+                </div>
+              </div>
+              <span class="tag">Family Office</span>
+            </div>
+            <div class="card-stats">
+              <div>
+                <div class="stat-label">Commitment</div>
+                <div class="stat-value">$75M</div>
+              </div>
+              <div>
+                <div class="stat-label">Fund</div>
+                <div class="stat-value">Mock Fund I</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="relationship-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                </svg>
+                Co-investment rights
+              </div>
+            </div>
+          </div>
+          
+          <div class="investor-card">
+            <div class="card-header">
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <div class="investor-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">MP</div>
+                <div>
+                  <div class="investor-name">Meridian Pension</div>
+                  <div class="investor-type">Institutional</div>
+                </div>
+              </div>
+              <span class="tag">Institutional</span>
+            </div>
+            <div class="card-stats">
+              <div>
+                <div class="stat-label">Commitment</div>
+                <div class="stat-value">$500M</div>
+              </div>
+              <div>
+                <div class="stat-label">Fund</div>
+                <div class="stat-value">Mock Fund II</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="relationship-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                </svg>
+                MFN clause
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

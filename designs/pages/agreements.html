@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agreements & Documents - Investor Directory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #1c1c1c;
+      color: #d4d4d4;
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr 420px;
+      height: 100vh;
+    }
+    
+    /* Left Panel */
+    .left-panel {
+      background: #141414;
+      border-right: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .panel-header {
+      padding: 20px 16px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: #2a2a2a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #3a3a3a;
+    }
+    .logo-icon svg { width: 20px; height: 20px; stroke: #808080; }
+    .logo h1 { font-size: 16px; font-weight: 500; color: #a0a0a0; }
+    
+    .search-box {
+      width: 100%;
+      padding: 10px 14px;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      color: #d4d4d4;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .search-box::placeholder { color: #525252; }
+    .search-box:focus { outline: none; border-color: #404040; }
+    
+    .nav-tabs {
+      display: flex;
+      padding: 12px 16px;
+      gap: 8px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .nav-tab {
+      flex: 1;
+      padding: 8px;
+      background: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #606060;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-tab:hover { color: #a0a0a0; background: #1c1c1c; }
+    .nav-tab.active { color: #d4d4d4; background: #2a2a2a; }
+    
+    .filter-bar {
+      padding: 12px 16px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .filter-select {
+      width: 100%;
+      padding: 8px 12px;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      color: #a0a0a0;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    
+    .list-header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .list-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+    }
+    .list-count {
+      font-size: 11px;
+      color: #525252;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .doc-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px;
+    }
+    
+    .doc-item {
+      padding: 14px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 2px;
+      transition: all 0.15s;
+      border-left: 2px solid transparent;
+    }
+    .doc-item:hover { background: #1c1c1c; }
+    .doc-item.active {
+      background: #1c1c1c;
+      border-left-color: #808080;
+    }
+    .doc-name { font-weight: 500; margin-bottom: 4px; color: #e0e0e0; font-size: 14px; }
+    .doc-meta { font-size: 12px; color: #606060; margin-bottom: 6px; }
+    .doc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .doc-tag {
+      padding: 2px 8px;
+      background: #2a2a2a;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #808080;
+    }
+    .doc-tag.type { background: #1a2e1a; color: #4a9a4a; }
+    
+    .add-btn {
+      margin: 12px;
+      padding: 10px;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      color: #a0a0a0;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .add-btn:hover { background: #333; border-color: #4a4a4a; }
+    
+    /* Center Panel */
+    .center-panel {
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .detail-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .doc-type-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #1a2e1a;
+      color: #4a9a4a;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .detail-title { font-size: 20px; font-weight: 600; margin-bottom: 6px; color: #f0f0f0; }
+    .detail-subtitle { color: #606060; font-size: 14px; }
+    .header-actions { display: flex; gap: 8px; }
+    .btn-secondary {
+      padding: 8px 14px;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      color: #a0a0a0;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-secondary:hover { background: #333; }
+    
+    .tabs-bar {
+      display: flex;
+      padding: 0 32px;
+      border-bottom: 1px solid #2a2a2a;
+      gap: 24px;
+    }
+    .tab-btn {
+      padding: 14px 0;
+      font-size: 13px;
+      color: #606060;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+      margin-bottom: -1px;
+      font-family: inherit;
+    }
+    .tab-btn:hover { color: #a0a0a0; }
+    .tab-btn.active { color: #d4d4d4; border-bottom-color: #606060; }
+    
+    .detail-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px;
+    }
+    
+    .info-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .info-item {
+      padding: 14px;
+      background: #141414;
+      border-radius: 6px;
+      border: 1px solid #2a2a2a;
+    }
+    .info-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #525252;
+      margin-bottom: 4px;
+    }
+    .info-value { font-size: 14px; color: #d4d4d4; }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+    }
+    .section-action {
+      font-size: 12px;
+      color: #606060;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .section-action:hover { color: #a0a0a0; }
+    
+    .clause-list { display: flex; flex-direction: column; gap: 8px; }
+    .clause-item {
+      padding: 16px;
+      background: #141414;
+      border-radius: 6px;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .clause-item:hover { border-color: #3a3a3a; }
+    .clause-item.selected { border-color: #505050; background: #1a1a1a; }
+    .clause-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .clause-type {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      color: #d4d4d4;
+    }
+    .clause-icon {
+      width: 22px;
+      height: 22px;
+      background: #2a2a2a;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #808080;
+      font-weight: 600;
+    }
+    .clause-source {
+      font-size: 11px;
+      color: #404040;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .clause-value {
+      font-size: 22px;
+      font-weight: 600;
+      color: #b0b0b0;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 4px;
+    }
+    .clause-text {
+      font-size: 13px;
+      color: #606060;
+      line-height: 1.5;
+      padding: 12px;
+      background: #1c1c1c;
+      border-radius: 4px;
+      margin-top: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Right Panel */
+    .right-panel {
+      background: #f8f8f8;
+      color: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .doc-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .doc-file-title { font-size: 13px; font-weight: 500; }
+    .doc-file-meta { font-size: 11px; color: #808080; }
+    .doc-actions { display: flex; gap: 6px; }
+    .doc-btn {
+      padding: 5px 10px;
+      background: white;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      color: #606060;
+    }
+    .doc-btn:hover { background: #f0f0f0; }
+    
+    .doc-preview {
+      flex: 1;
+      padding: 28px 24px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 2;
+      color: #404040;
+    }
+    .doc-preview h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #d0d0d0;
+      color: #1c1c1c;
+    }
+    .doc-preview p { margin-bottom: 14px; }
+    .highlight {
+      background: #e8e8e8;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+    .section-num { font-weight: 600; color: #808080; margin-right: 8px; }
+    .doc-preview strong { color: #1c1c1c; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="left-panel">
+      <div class="panel-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M9 12h6M9 16h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+            </svg>
+          </div>
+          <h1>Investor Directory</h1>
+        </div>
+        <input type="search" class="search-box" placeholder="Search documents...">
+      </div>
+      
+      <div class="nav-tabs">
+        <button class="nav-tab">Investors</button>
+        <button class="nav-tab active">Documents</button>
+        <button class="nav-tab">Fees</button>
+      </div>
+      
+      <div class="filter-bar">
+        <select class="filter-select">
+          <option>All Investors</option>
+          <option>Mock Capital LP</option>
+          <option>Atlas Family Office</option>
+          <option>Meridian Pension Fund</option>
+        </select>
+      </div>
+      
+      <div class="list-header">
+        <span class="list-title">All Documents</span>
+        <span class="list-count">47 total</span>
+      </div>
+      
+      <div class="doc-list">
+        <div class="doc-item active">
+          <div class="doc-name">Mock Capital Side Letter</div>
+          <div class="doc-meta">Mock Capital LP · Feb 1, 2024</div>
+          <div class="doc-tags">
+            <span class="doc-tag type">Side Letter</span>
+            <span class="doc-tag">3 clauses</span>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-name">Mock Capital Subscription</div>
+          <div class="doc-meta">Mock Capital LP · Jan 15, 2024</div>
+          <div class="doc-tags">
+            <span class="doc-tag type">Subscription</span>
+            <span class="doc-tag">5 clauses</span>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-name">Atlas Co-Investment Rights</div>
+          <div class="doc-meta">Atlas Family Office · Jan 20, 2024</div>
+          <div class="doc-tags">
+            <span class="doc-tag type">Side Letter</span>
+            <span class="doc-tag">2 clauses</span>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-name">Meridian Fee Schedule</div>
+          <div class="doc-meta">Meridian Pension · Dec 1, 2023</div>
+          <div class="doc-tags">
+            <span class="doc-tag type">Fee Schedule</span>
+            <span class="doc-tag">4 clauses</span>
+          </div>
+        </div>
+      </div>
+      
+      <button class="add-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        Add Document
+      </button>
+    </aside>
+    
+    <main class="center-panel">
+      <div class="detail-header">
+        <div>
+          <span class="doc-type-badge">Side Letter</span>
+          <h2 class="detail-title">Mock Capital Side Letter</h2>
+          <p class="detail-subtitle">Mock Capital LP · Effective Feb 1, 2024</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-secondary">Edit</button>
+          <button class="btn-secondary">Delete</button>
+        </div>
+      </div>
+      
+      <nav class="tabs-bar">
+        <button class="tab-btn active">Clauses (3)</button>
+        <button class="tab-btn">Details</button>
+        <button class="tab-btn">History</button>
+      </nav>
+      
+      <div class="detail-content">
+        <div class="info-row">
+          <div class="info-item">
+            <div class="info-label">Investor</div>
+            <div class="info-value">Mock Capital LP</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Fund</div>
+            <div class="info-value">Mock Fund I</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Effective Date</div>
+            <div class="info-value">Feb 1, 2024</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Priority</div>
+            <div class="info-value">3 (High)</div>
+          </div>
+        </div>
+        
+        <div class="section-header">
+          <h3 class="section-title">Extracted Clauses</h3>
+          <button class="section-action">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add Clause
+          </button>
+        </div>
+        
+        <div class="clause-list">
+          <div class="clause-item selected">
+            <div class="clause-header">
+              <span class="clause-type">
+                <span class="clause-icon">%</span>
+                Management Fee
+              </span>
+              <span class="clause-source">§3.2</span>
+            </div>
+            <div class="clause-value">1.75%</div>
+            <div class="clause-text">"the Management Fee payable by the Limited Partner shall be reduced to 1.75% per annum of the Limited Partner's Capital Commitment during the Investment Period."</div>
+          </div>
+          
+          <div class="clause-item">
+            <div class="clause-header">
+              <span class="clause-type">
+                <span class="clause-icon">↓</span>
+                Fee Step-Down
+              </span>
+              <span class="clause-source">§3.3</span>
+            </div>
+            <div class="clause-value">Year 4</div>
+            <div class="clause-text">"Beginning on the fourth anniversary of the Initial Closing, the Management Fee shall be further reduced by 0.25% per annum for the remainder of the Partnership term."</div>
+          </div>
+          
+          <div class="clause-item">
+            <div class="clause-header">
+              <span class="clause-type">
+                <span class="clause-icon">★</span>
+                MFN Protection
+              </span>
+              <span class="clause-source">§5.1</span>
+            </div>
+            <div class="clause-value">Enabled</div>
+            <div class="clause-text">"If the Partnership enters into a side letter with any other Limited Partner that contains terms more favorable than those set forth herein, the Partnership shall promptly notify the Limited Partner..."</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <aside class="right-panel">
+      <div class="doc-header">
+        <div>
+          <div class="doc-file-title">Mock Capital Side Letter.pdf</div>
+          <div class="doc-file-meta">Uploaded Jan 15, 2024 · 12 pages</div>
+        </div>
+        <div class="doc-actions">
+          <button class="doc-btn">Download</button>
+          <button class="doc-btn">Expand</button>
+        </div>
+      </div>
+      <div class="doc-preview">
+        <h2>SIDE LETTER AGREEMENT</h2>
+        <p>This Side Letter Agreement (this "Side Letter") is entered into as of February 1, 2024, by and between Mock Fund I, LP (the "Partnership") and Mock Capital LP (the "Limited Partner").</p>
+        <p><span class="section-num">3.2</span> <strong>Management Fee.</strong> Notwithstanding Section 6.1 of the Partnership Agreement, <span class="highlight">the Management Fee payable by the Limited Partner shall be reduced to 1.75% per annum</span> of the Limited Partner's Capital Commitment during the Investment Period.</p>
+        <p><span class="section-num">3.3</span> <strong>Fee Step-Down.</strong> <span class="highlight">Beginning on the fourth anniversary of the Initial Closing, the Management Fee shall be further reduced by 0.25% per annum</span> for the remainder of the Partnership term.</p>
+        <p><span class="section-num">5.1</span> <strong>Most Favored Nation.</strong> <span class="highlight">If the Partnership enters into a side letter with any other Limited Partner that contains terms more favorable</span> than those set forth herein, the Partnership shall promptly notify the Limited Partner...</p>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>

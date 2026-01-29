@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Clause - Investor Directory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #1c1c1c;
+      color: #d4d4d4;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .header {
+      padding: 16px 32px;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #141414;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .back-btn {
+      padding: 8px;
+      background: none;
+      border: none;
+      color: #808080;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .back-btn:hover { background: #2a2a2a; color: #d4d4d4; }
+    .header h1 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+    .header-actions { display: flex; gap: 8px; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-ghost {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #a0a0a0;
+    }
+    .btn-ghost:hover { background: #2a2a2a; }
+    .btn-primary {
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      color: #e0e0e0;
+    }
+    .btn-primary:hover { background: #333; border-color: #4a4a4a; }
+    
+    .form-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+    
+    .context-banner {
+      padding: 14px 16px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .context-icon {
+      width: 32px;
+      height: 32px;
+      background: #2a2a2a;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .context-icon svg { stroke: #606060; }
+    .context-text {
+      font-size: 13px;
+      color: #808080;
+    }
+    .context-text strong { color: #d4d4d4; }
+    
+    .form-section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #525252;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+    
+    .form-group { }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #808080;
+      margin-bottom: 8px;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      color: #d4d4d4;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #404040; }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus { outline: none; border-color: #404040; }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23606060' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+    }
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    
+    .form-hint {
+      font-size: 12px;
+      color: #525252;
+      margin-top: 6px;
+    }
+    
+    .input-suffix {
+      position: relative;
+    }
+    .input-suffix .form-input {
+      padding-right: 40px;
+    }
+    .input-suffix span {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #525252;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1>Add Clause</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-primary">Save Clause</button>
+    </div>
+  </header>
+  
+  <div class="form-container">
+    <div class="context-banner">
+      <div class="context-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <path d="M14 2v6h6"/>
+        </svg>
+      </div>
+      <div class="context-text">
+        Adding clause to <strong>Mock Capital Side Letter</strong>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="section-title">Clause Type</h2>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Type *</label>
+          <select class="form-select">
+            <option value="">Select clause type...</option>
+            <option>Management Fee</option>
+            <option>Carry Terms</option>
+            <option>Hurdle Rate</option>
+            <option>MFN (Most Favored Nation)</option>
+            <option>Fee Waiver / Discount</option>
+            <option>Co-investment Rights</option>
+            <option>Fee Step-Down</option>
+            <option>Expense Cap</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="section-title">Structured Data</h2>
+      
+      <div class="form-row triple">
+        <div class="form-group">
+          <label class="form-label">Rate / Value</label>
+          <div class="input-suffix">
+            <input type="text" class="form-input" placeholder="1.75">
+            <span>%</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Threshold</label>
+          <input type="text" class="form-input" placeholder="e.g., ≥ $250M">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Discount</label>
+          <div class="input-suffix">
+            <input type="text" class="form-input" placeholder="0.25">
+            <span>%</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Effective Date</label>
+          <input type="date" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Section Reference</label>
+          <input type="text" class="form-input" placeholder="e.g., §3.2">
+        </div>
+      </div>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <input type="text" class="form-input" placeholder="Additional context or conditions...">
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2 class="section-title">Source Text</h2>
+      
+      <div class="form-row full">
+        <div class="form-group">
+          <label class="form-label">Clause Text (from document) *</label>
+          <textarea class="form-textarea" placeholder="Paste the exact clause text from the document..."></textarea>
+          <p class="form-hint">Copy the relevant text directly from the source document for traceability.</p>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Page Number</label>
+          <input type="text" class="form-input" placeholder="e.g., 4">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
