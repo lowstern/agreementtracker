@@ -45,10 +45,7 @@ export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTab
       isResizing,
       setIsResizing 
     }}>
-      <div 
-        className={`${styles.app} ${rightPanelOpen ? styles.threePanelOpen : ''} ${isResizing ? styles.resizing : ''}`}
-        style={gridStyle}
-      >
+      <div className={styles.appWrapper}>
         <div className={styles.demoBanner}>
           <div className={styles.demoBannerContent}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -59,7 +56,12 @@ export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTab
             <span>Demo Mode • Contact us for a full demo</span>
           </div>
         </div>
-        {children}
+        <div 
+          className={`${styles.app} ${rightPanelOpen ? styles.threePanelOpen : ''} ${isResizing ? styles.resizing : ''}`}
+          style={gridStyle}
+        >
+          {children}
+        </div>
       </div>
     </RightPanelContext.Provider>
   );

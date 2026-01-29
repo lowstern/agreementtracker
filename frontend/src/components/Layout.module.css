@@ -1,7 +1,14 @@
+.appWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .app {
   display: grid;
   grid-template-columns: 280px 1fr 0px;
-  height: 100vh;
+  flex: 1;
   overflow: hidden;
   transition: grid-template-columns 0.3s ease-in-out;
 }
@@ -22,11 +29,11 @@
 
 /* Demo Banner */
 .demoBanner {
-  grid-column: 1 / -1;
   background: #2c3e50;
   border-bottom: 1px solid #34495e;
   padding: 8px 20px;
   z-index: 1000;
+  flex-shrink: 0;
 }
 
 .demoBannerContent {
