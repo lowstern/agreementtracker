@@ -31,7 +31,7 @@ const MIN_WIDTH = 280;
 const MAX_WIDTH = 800;
 const DEFAULT_WIDTH = 420;
 
-export function Layout({ user, activeTab, onTabChange, onLogout, children, rightPanelOpen = false }: LayoutProps) {
+export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTabChange, onLogout: _onLogout, children, rightPanelOpen = false }: LayoutProps) {
   const [rightPanelWidth, setRightPanelWidth] = useState(DEFAULT_WIDTH);
   const [isResizing, setIsResizing] = useState(false);
 
@@ -233,7 +233,7 @@ export function CenterPanel({ children }: { children: ReactNode }) {
 }
 
 export function RightPanel({ children, isOpen = true }: { children: ReactNode; isOpen?: boolean }) {
-  const { width, setWidth, isResizing, setIsResizing } = useContext(RightPanelContext);
+  const { width: _width, setWidth, isResizing, setIsResizing } = useContext(RightPanelContext);
   const panelRef = useRef<HTMLElement>(null);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {

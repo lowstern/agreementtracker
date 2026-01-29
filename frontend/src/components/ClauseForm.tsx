@@ -89,15 +89,15 @@ export function ClauseForm({ isOpen, onClose, onSubmit, clause }: ClauseFormProp
     try {
       await onSubmit({
         clauseType: formData.clauseType,
-        clauseText: formData.clauseText || null,
-        rate: formData.rate ? parseFloat(formData.rate) : null,
-        threshold: formData.threshold || null,
-        thresholdAmount: formData.thresholdAmount ? parseFloat(formData.thresholdAmount) : null,
-        discount: formData.discount ? parseFloat(formData.discount) : null,
-        effectiveDate: formData.effectiveDate || null,
-        notes: formData.notes || null,
-        sectionRef: formData.sectionRef || null,
-        pageNumber: formData.pageNumber ? parseInt(formData.pageNumber) : null,
+        clauseText: formData.clauseText || undefined,
+        rate: formData.rate ? parseFloat(formData.rate) : undefined,
+        threshold: formData.threshold || undefined,
+        thresholdAmount: formData.thresholdAmount ? parseFloat(formData.thresholdAmount) : undefined,
+        discount: formData.discount ? parseFloat(formData.discount) : undefined,
+        effectiveDate: formData.effectiveDate || undefined,
+        notes: formData.notes || undefined,
+        sectionRef: formData.sectionRef || undefined,
+        pageNumber: formData.pageNumber ? parseInt(formData.pageNumber) : undefined,
       });
       onClose();
     } catch (err) {

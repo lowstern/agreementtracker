@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { api } from '../services/api';
-import type { User, AuthState } from '../types';
+import type { AuthState } from '../types';
 
 const STORAGE_KEY = 'auth_token';
 

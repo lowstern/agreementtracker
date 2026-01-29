@@ -69,7 +69,7 @@ export function ExtractionModal({ isOpen, onClose, document, onApply, autoExtrac
       setHasAutoExtracted(true);
       // Delay slightly to ensure modal is visible
       setTimeout(() => {
-        handleExtractInternal(document.sourceText);
+        handleExtractInternal(document.sourceText || '');
       }, 100);
     }
   }, [isOpen, autoExtract, document?.sourceText, hasAutoExtracted, loading]);
@@ -150,7 +150,7 @@ export function ExtractionModal({ isOpen, onClose, document, onApply, autoExtrac
   const hasExistingText = document?.sourceText && document.sourceText.length > 50;
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="AI Clause Extraction" size="large">
+    <Modal isOpen={isOpen} onClose={handleClose} title="AI Clause Extraction" size="lg">
       {step === 'input' ? (
         <div className={styles.inputStep}>
           <div className={styles.instructions}>
