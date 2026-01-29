@@ -3,8 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   // Get visitor information
-  const ip = request.ip || 
-             request.headers.get('x-forwarded-for')?.split(',')[0] || 
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 
              request.headers.get('x-real-ip') || 
              'Unknown';
   
