@@ -51,12 +51,12 @@ export function Layout({ user: _user, activeTab: _activeTab, onTabChange: _onTab
       >
         <div className={styles.demoBanner}>
           <div className={styles.demoBannerContent}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10"/>
               <line x1="12" y1="16" x2="12" y2="12"/>
               <line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
-            <span>Demo Mode - Explore the platform with sample data</span>
+            <span>Demo Mode • Contact us for a full demo</span>
           </div>
         </div>
         {children}
