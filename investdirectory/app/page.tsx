@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import ContactModal from './components/ContactModal';
+import ImageCarousel from './components/ImageCarousel';
 import './styles.css';
 
 export default function Home() {
@@ -142,9 +143,7 @@ export default function Home() {
           <h2>See It In <span className="accent">Action</span></h2>
           <p className="section-subtitle">A unified platform for managing all your LP agreements with complete transparency</p>
           
-          <div className="screenshot-container">
-            <img src="/app-screenshot.png" alt="Agreement Tracker Interface" />
-          </div>
+          <ImageCarousel />
           
           <div className="screenshot-features">
             <div className="screenshot-feature">
