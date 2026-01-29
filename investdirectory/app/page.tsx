@@ -28,7 +28,7 @@ export default function Home() {
         <div className="nav-container">
           <div className="logo">Termifi</div>
           <div className="nav-links">
-            <a href="https://agreement-tracker-frontend.onrender.com/?tab=agreements" target="_blank" rel="noopener noreferrer">View Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">View Demo</a>
             <a href="#solution">Solution</a>
             <a href="#platform">Platform</a>
             <a href="#" className="btn-nav" onClick={handleContactClick}>Contact Us</a>
@@ -66,7 +66,7 @@ export default function Home() {
           <p className="tagline">The agreement intelligence platform built for asset managers</p>
           <p className="description">As asset managers expand customized, retail-facing offerings, Termifi enables secure, permissioned access to contract terms—without duplicating agreements, processes, or controls.</p>
           <div className="hero-buttons">
-            <a href="https://agreement-tracker-frontend.onrender.com/?tab=agreements" target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Live Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Live Demo</a>
             <a href="#" className="btn btn-secondary" onClick={handleContactClick}>Contact Us</a>
           </div>
         </div>
@@ -234,7 +234,7 @@ export default function Home() {
           <h2>Get Started</h2>
           <p>Built for asset managers expanding retail access—without compromising control.</p>
           <div className="hero-buttons">
-            <a href="https://agreement-tracker-frontend.onrender.com/?tab=agreements" target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Live Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Live Demo</a>
             <a href="#" className="btn btn-secondary" onClick={handleContactClick}>Contact Us</a>
           </div>
         </div>
