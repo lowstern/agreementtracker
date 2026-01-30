@@ -47,6 +47,23 @@ services:
       - key: VITE_API_URL
         sync: false
 
+  # GetTermfi Marketing Site (Next.js)
+  - type: web
+    name: gettermfi
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: investdirectory
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: NODE_ENV
+        value: production
+
 databases:
   - name: agreement-tracker-db
     plan: free
