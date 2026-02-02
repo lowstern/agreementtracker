@@ -17,25 +17,38 @@ export default function Home() {
 
   // Check if user has already selected a role (persist across page loads)
   useEffect(() => {
-    const savedRole = sessionStorage.getItem('termfi-role');
-    if (savedRole) {
-      setSelectedRole(savedRole);
-    }
-    // Show cookie banner after a short delay if not already dismissed
-    const cookiesAccepted = sessionStorage.getItem('termfi-cookies');
-    if (!cookiesAccepted) {
+    try {
+      const savedRole = sessionStorage.getItem('termfi-role');
+      if (savedRole) {
+        setSelectedRole(savedRole);
+      }
+      // Show cookie banner after a short delay if not already dismissed
+      const cookiesAccepted = sessionStorage.getItem('termfi-cookies');
+      if (!cookiesAccepted) {
+        setTimeout(() => setShowCookieBanner(true), 800);
+      }
+    } catch (e) {
+      // sessionStorage may be unavailable in private browsing or with strict privacy settings
       setTimeout(() => setShowCookieBanner(true), 800);
     }
   }, []);
 
   const handleAcceptCookies = () => {
-    sessionStorage.setItem('termfi-cookies', 'accepted');
+    try {
+      sessionStorage.setItem('termfi-cookies', 'accepted');
+    } catch (e) {
+      // sessionStorage may be unavailable
+    }
     setShowCookieBanner(false);
   };
 
   const handleRoleSelect = (role: string) => {
     setIsTransitioning(true);
-    sessionStorage.setItem('termfi-role', role);
+    try {
+      sessionStorage.setItem('termfi-role', role);
+    } catch (e) {
+      // sessionStorage may be unavailable in private browsing or with strict privacy settings
+    }
     setTimeout(() => {
       setSelectedRole(role);
     }, 400);
