@@ -6,6 +6,12 @@ const STORAGE_KEY = 'auth_token';
 const DEMO_EMAIL = 'demo@agreement-tracker.com';
 const DEMO_PASSWORD = 'Demo123!';
 
+// Demo user fallback when backend is unavailable
+const DEMO_USER = {
+  email: 'demo@agreement-tracker.com',
+  displayName: 'Demo User',
+};
+
 // Safe localStorage helpers for corporate/restricted environments
 function safeGetItem(key: string): string | null {
   try {
@@ -53,12 +59,12 @@ export function useAuth() {
           setLoading(false);
         })
         .catch(() => {
-          // Token invalid, auto-login with demo credentials
+          // Token invalid, try auto-login
           safeRemoveItem(STORAGE_KEY);
           autoLoginDemo();
         });
     } else {
-      // No token, auto-login with demo credentials
+      // No token, try auto-login
       autoLoginDemo();
     }
 
@@ -71,12 +77,13 @@ export function useAuth() {
           token: newToken,
           isAuthenticated: true,
         });
-      } catch (error) {
-        console.error('Auto-login failed:', error);
+      } catch {
+        // Backend unavailable - use demo user fallback
+        console.log('Backend unavailable, using demo mode');
         setAuthState({
-          user: null,
-          token: null,
-          isAuthenticated: false,
+          user: DEMO_USER,
+          token: 'demo-mode',
+          isAuthenticated: true,
         });
       } finally {
         setLoading(false);
