@@ -1433,4 +1433,53 @@ li::before {
   .cta-buttons {
     flex-direction: column;
   }
+  
+  /* Mobile nav-right styles */
+  .nav-right {
+    gap: var(--spacing-sm);
+  }
+  
+  .nav-status {
+    font-size: 0;
+    padding: 6px;
+  }
+  
+  .nav-status .status-dot {
+    margin: 0;
+  }
+  
+  .btn-contact {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+  
+  /* Mobile banner styles */
+  .top-banner {
+    padding: 12px var(--spacing-sm);
+  }
+  
+  .banner-content {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+  
+  .banner-content > span {
+    font-size: 12px;
+  }
+  
+  .banner-form {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .banner-input {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+  
+  .subscribed-message {
+    font-size: 13px;
+  }
 }
