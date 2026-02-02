@@ -1,7 +1,11 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 function getToken(): string | null {
-  return localStorage.getItem('auth_token');
+  try {
+    return localStorage.getItem('auth_token');
+  } catch {
+    return null;
+  }
 }
 
 async function request<T>(

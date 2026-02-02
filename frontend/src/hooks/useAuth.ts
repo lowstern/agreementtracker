@@ -6,16 +6,41 @@ const STORAGE_KEY = 'auth_token';
 const DEMO_EMAIL = 'demo@agreement-tracker.com';
 const DEMO_PASSWORD = 'Demo123!';
 
+// Safe localStorage helpers for corporate/restricted environments
+function safeGetItem(key: string): string | null {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeSetItem(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // localStorage unavailable - token won't persist but app will still work
+  }
+}
+
+function safeRemoveItem(key: string): void {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // localStorage unavailable
+  }
+}
+
 export function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
-    token: localStorage.getItem(STORAGE_KEY),
+    token: safeGetItem(STORAGE_KEY),
     isAuthenticated: false,
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem(STORAGE_KEY);
+    const token = safeGetItem(STORAGE_KEY);
     if (token) {
       // Try to use existing token
       api.getCurrentUser()
@@ -29,7 +54,7 @@ export function useAuth() {
         })
         .catch(() => {
           // Token invalid, auto-login with demo credentials
-          localStorage.removeItem(STORAGE_KEY);
+          safeRemoveItem(STORAGE_KEY);
           autoLoginDemo();
         });
     } else {
@@ -40,7 +65,7 @@ export function useAuth() {
     async function autoLoginDemo() {
       try {
         const { token: newToken, user } = await api.login(DEMO_EMAIL, DEMO_PASSWORD);
-        localStorage.setItem(STORAGE_KEY, newToken);
+        safeSetItem(STORAGE_KEY, newToken);
         setAuthState({
           user,
           token: newToken,
