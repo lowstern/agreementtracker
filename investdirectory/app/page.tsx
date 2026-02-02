@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ContactModal from './components/ContactModal';
 import ImageCarousel from './components/ImageCarousel';
 import StructuredData from './components/StructuredData';
 import './styles.css';
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const [showContactModal, setShowContactModal] = useState(false);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -15,8 +17,20 @@ export default function Home() {
   const [bannerSubscribed, setBannerSubscribed] = useState(false);
   const [footerSubscribed, setFooterSubscribed] = useState(false);
 
-  // Check if user has already selected a role (persist across page loads)
+  // Check URL params first, then sessionStorage for role selection
   useEffect(() => {
+    // Check URL parameter first (most reliable for corporate environments)
+    const urlRole = searchParams.get('role');
+    if (urlRole && ['legal', 'wealth', 'ops'].includes(urlRole)) {
+      setSelectedRole(urlRole);
+      try {
+        sessionStorage.setItem('termfi-role', urlRole);
+      } catch (e) {
+        // sessionStorage may be unavailable
+      }
+      return;
+    }
+
     try {
       const savedRole = sessionStorage.getItem('termfi-role');
       if (savedRole) {
@@ -31,7 +45,7 @@ export default function Home() {
       // sessionStorage may be unavailable in private browsing or with strict privacy settings
       setTimeout(() => setShowCookieBanner(true), 800);
     }
-  }, []);
+  }, [searchParams]);
 
   const handleAcceptCookies = () => {
     try {
@@ -80,35 +94,38 @@ export default function Home() {
           <p className="splash-subtitle">Select your role to see how Termfi can help your team</p>
           
           <div className="role-selector">
-            <button 
+            <a 
+              href="?role=legal"
               className="role-option"
-              onClick={() => handleRoleSelect('legal')}
+              onClick={(e) => { e.preventDefault(); handleRoleSelect('legal'); }}
             >
               <div className="role-option-tag">Legal</div>
               <h3>Lawyers</h3>
               <p>Clause comparison and deviation analysis</p>
               <div className="role-arrow">→</div>
-            </button>
+            </a>
             
-            <button 
+            <a 
+              href="?role=wealth"
               className="role-option"
-              onClick={() => handleRoleSelect('wealth')}
+              onClick={(e) => { e.preventDefault(); handleRoleSelect('wealth'); }}
             >
               <div className="role-option-tag">Distribution</div>
               <h3>Wealth & IR Teams</h3>
               <p>Visibility into bespoke fees and terms</p>
               <div className="role-arrow">→</div>
-            </button>
+            </a>
             
-            <button 
+            <a 
+              href="?role=ops"
               className="role-option"
-              onClick={() => handleRoleSelect('ops')}
+              onClick={(e) => { e.preventDefault(); handleRoleSelect('ops'); }}
             >
               <div className="role-option-tag">Operations</div>
               <h3>Ops, Finance & Compliance</h3>
               <p>Audit-ready oversight with minimal friction</p>
               <div className="role-arrow">→</div>
-            </button>
+            </a>
           </div>
         </div>
         
