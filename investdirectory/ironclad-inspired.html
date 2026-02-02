@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Directory - Contract Intelligence Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #0A0E27;
+            --color-primary-light: #1A1F3A;
+            --color-accent: #0066FF;
+            --color-accent-hover: #0052CC;
+            --color-text: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-muted: #6B6B6B;
+            --color-white: #FFFFFF;
+            --color-bg-light: #F8F9FA;
+            --color-border: #E5E7EB;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 96px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .btn-nav {
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--color-primary-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 140px var(--spacing-lg) 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 102, 255, 0.15), transparent);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -2px;
+        }
+
+        .hero .tagline {
+            font-size: 22px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-top: var(--spacing-xl);
+        }
+
+        .btn {
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--color-white);
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Customer Logos */
+        .customers {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background: var(--color-white);
+        }
+
+        .customers-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .customers-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-xl);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .customers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--spacing-xl);
+            align-items: center;
+            opacity: 0.6;
+        }
+
+        .customer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            background: var(--color-bg-light);
+        }
+
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stats-header h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        .stats-header p {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .stat-card {
+            background: var(--color-white);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-description {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-top: var(--spacing-sm);
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            background: var(--color-white);
+        }
+
+        .features-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .features-header h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        .features-header p {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .feature-card {
+            background: var(--color-white);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text);
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .solution-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .solution-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .solution-header h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        .solution-header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .solution-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .solution-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .solution-card p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            background: var(--color-bg-light);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: var(--color-primary);
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero .tagline {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-links a:not(.btn-nav) {
+                display: none;
+            }
+
+            .stats-header h2,
+            .features-header h2,
+            .solution-header h2,
+            .cta h2 {
+                font-size: 36px;
+            }
+
+            .stat-value {
+                font-size: 42px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Investor Directory</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#stats">Impact</a>
+                <a href="#" class="btn-nav">Request Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Keep Contracts Moving,<br>and Business Growing</h1>
+            <p class="tagline">The investor directory platform built for asset managers</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Request Demo</a>
+                <a href="#" class="btn btn-secondary">Watch Overview</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Logos -->
+    <section class="customers">
+        <div class="customers-container">
+            <div class="customers-title">Trusted by leading asset management firms</div>
+            <div class="customers-grid">
+                <div class="customer-logo">Blackstone</div>
+                <div class="customer-logo">KKR</div>
+                <div class="customer-logo">Apollo</div>
+                <div class="customer-logo">Carlyle</div>
+                <div class="customer-logo">TPG</div>
+                <div class="customer-logo">Bain Capital</div>
+                <div class="customer-logo">Warburg Pincus</div>
+                <div class="customer-logo">General Atlantic</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h2>Faster deals, fewer surprises,<br>and measurable value</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Acceleration</div>
+                    <div class="stat-value">50%</div>
+                    <div class="stat-description">reduction in contract review time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Adoption</div>
+                    <div class="stat-value">82%</div>
+                    <div class="stat-description">adoption rate within the first 71 days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Optimization</div>
+                    <div class="stat-value">8–9%</div>
+                    <div class="stat-description">of annual contract value recovered through improved enforcement</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Efficiency</div>
+                    <div class="stat-value">1k+</div>
+                    <div class="stat-description">contract templates consolidated in 3 months</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="features-header">
+                <h2>All things contracts,<br>all in one place</h2>
+                <p>Centralized contract management designed for asset managers</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Centralized Repository</h3>
+                    <p>Portfolio agreements, side letters, and amendments governed within a single platform</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Clause Intelligence</h3>
+                    <p>AI-driven extraction and normalization of key terms across funds and vehicles</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Smart Alerts</h3>
+                    <p>Automated monitoring of renewals, notice periods, and obligations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Controlled Access</h3>
+                    <p>Permissioned views for business users and external stakeholders</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Real-time visibility into contract performance and compliance metrics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Collaboration Tools</h3>
+                    <p>Streamlined workflows for legal, compliance, and business teams</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solutions">
+        <div class="solution-container">
+            <div class="solution-header">
+                <h2>Contract management that teams<br>actually love</h2>
+                <p>Built for the unique needs of asset management firms</p>
+            </div>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h3>Legal Ops</h3>
+                    <p>Scale results without scaling resources. Build automated processes so contracting can scale efficiently.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>General Counsel</h3>
+                    <p>Accelerate growth without increasing risk. Manage contracts more efficiently with streamlined processes.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>Compliance</h3>
+                    <p>Drive strategic cost savings with more visibility. Track obligations and ensure regulatory compliance.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>Asset Management</h3>
+                    <p>Retrieve answers without reopening agreements. Get instant access to contract terms and conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Get your personalized<br>demo today</h2>
+            <p>See how Investor Directory can transform your contract management workflow</p>
+            <a href="#" class="btn btn-primary">Request Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div>© 2026 Investor Directory · Contract Intelligence Platform</div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

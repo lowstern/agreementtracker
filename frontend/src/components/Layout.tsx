@@ -126,7 +126,7 @@ export function PanelHeader({
               <path d="M9 12h6M9 16h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
             </svg>
           </div>
-          <h1>Agreement Tracker</h1>
+          <h1>Termfi</h1>
         </div>
         <div className={styles.menuContainer}>
           <button 
@@ -208,6 +208,12 @@ export function NavTabs({
         onClick={() => onTabChange('fees')}
       >
         Fees
+      </button>
+      <button 
+        className={`${styles.navTab} ${activeTab === 'audit' ? styles.active : ''}`}
+        onClick={() => onTabChange('audit')}
+      >
+        Audit Log
       </button>
     </div>
   );

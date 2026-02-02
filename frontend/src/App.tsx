@@ -5,6 +5,7 @@ import { Layout } from './components/Layout';
 import { InvestorDirectory } from './pages/InvestorDirectory';
 import { AgreementsDocuments } from './pages/AgreementsDocuments';
 import { FeeLogicView } from './pages/FeeLogicView';
+import { AuditLog } from './pages/AuditLog';
 import type { TabId } from './types';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
   // Read tab from URL params, default to 'investors'
   const urlTab = searchParams.get('tab') as TabId | null;
-  const activeTab: TabId = urlTab && ['investors', 'agreements', 'fees'].includes(urlTab) 
+  const activeTab: TabId = urlTab && ['investors', 'agreements', 'fees', 'audit'].includes(urlTab) 
     ? urlTab 
     : 'investors';
   
@@ -73,6 +74,8 @@ function App() {
         );
       case 'fees':
         return <FeeLogicView activeTab={activeTab} onTabChange={handleTabChange} />;
+      case 'audit':
+        return <AuditLog activeTab={activeTab} onTabChange={handleTabChange} />;
       default:
         return <InvestorDirectory activeTab={activeTab} onTabChange={handleTabChange} />;
     }

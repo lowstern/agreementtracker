@@ -55,7 +55,7 @@ export interface Document {
   clauses: Clause[];
 }
 
-export type TabId = 'investors' | 'agreements' | 'fees';
+export type TabId = 'investors' | 'agreements' | 'fees' | 'audit';
 
 // Tab change options for navigation with deep linking
 export interface TabChangeOptions {

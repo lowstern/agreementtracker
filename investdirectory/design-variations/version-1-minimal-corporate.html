@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termifi - Contract Intelligence Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-text: #1a1a1a;
+            --color-text-secondary: #4a4a4a;
+            --color-text-muted: #6b6b6b;
+            --color-border: #e0e0e0;
+            --color-bg: #ffffff;
+            --color-accent: #2c2c2c;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 32px;
+            --spacing-lg: 64px;
+            --spacing-xl: 96px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--color-text);
+        }
+
+        h1 {
+            font-size: 48px;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h2 {
+            font-size: 36px;
+            letter-spacing: -0.3px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-secondary);
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--spacing-sm) 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .btn-nav {
+            padding: 8px 20px;
+            border: 1px solid var(--color-text);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 120px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            max-width: 800px;
+            margin: 0 auto var(--spacing-sm);
+        }
+
+        .hero .tagline {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.3px;
+        }
+
+        .hero .description {
+            font-size: 17px;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid var(--color-text);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+        }
+
+        /* Sections */
+        .section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-alt {
+            background: #fafafa;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 17px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .stat-number {
+            font-family: 'Crimson Text', serif;
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+            line-height: 1;
+        }
+
+        .stat-text {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .impact-summary {
+            text-align: center;
+            padding: var(--spacing-md);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .impact-summary p {
+            font-size: 17px;
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+
+        /* Market Quote */
+        .market-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+            border-left: 2px solid var(--color-border);
+        }
+
+        .market-quote p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .market-stat {
+            font-weight: 500;
+            color: var(--color-text);
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Solution */
+        .solution-intro {
+            max-width: 900px;
+            margin: 0 auto var(--spacing-lg);
+            text-align: center;
+        }
+
+        .intro-large {
+            font-size: 19px;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .intro-highlight {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--color-text);
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: #fafafa;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-card {
+            padding: var(--spacing-md);
+        }
+
+        .feature-card h3 {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .feature-note {
+            text-align: center;
+            padding: var(--spacing-md);
+            font-size: 14px;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* Dark Section */
+        .dark-section {
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        .dark-section h2,
+        .dark-section h3,
+        .dark-section p {
+            color: var(--color-bg);
+        }
+
+        .dark-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .role-card {
+            padding: var(--spacing-md);
+        }
+
+        .role-note {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            font-style: italic;
+        }
+
+        /* Why Grid */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .why-card {
+            padding: var(--spacing-md);
+        }
+
+        /* How It Fits */
+        .how-it-fits {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            background: #fafafa;
+        }
+
+        .how-it-fits h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .how-it-fits ul {
+            list-style: none;
+            margin-top: var(--spacing-sm);
+        }
+
+        .how-it-fits li {
+            padding-left: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            position: relative;
+        }
+
+        .how-it-fits li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        .cta-section h2,
+        .cta-section p {
+            color: var(--color-bg);
+        }
+
+        .cta-section .btn-primary {
+            background: var(--color-bg);
+            color: var(--color-text);
+            border-color: var(--color-bg);
+        }
+
+        .cta-section .btn-secondary {
+            color: var(--color-bg);
+            border-color: var(--color-bg);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            .stats-grid,
+            .features-grid,
+            .roles-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding: 120px 0 80px;
+            }
+            .section {
+                padding: var(--spacing-lg) 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Termifi</div>
+            <div class="nav-links">
+                <a href="#solution">Solution</a>
+                <a href="#platform">Platform</a>
+                <a href="#" class="btn-nav">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Contract Chaos Into Strategic Clarity</h1>
+            <p class="tagline">The agreement intelligence platform built for asset managers</p>
+            <p class="description">As asset managers expand customized, retail-facing offerings, Termifi enables secure, permissioned access to contract terms—without duplicating agreements, processes, or controls.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">View Live Demo</a>
+                <a href="#" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <h2>The Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-text">reduction in contract review time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">82%</div>
+                    <div class="stat-text">reduction in administrative workload</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8–9%</div>
+                    <div class="stat-text">of annual contract value recovered through improved enforcement</div>
+                </div>
+            </div>
+            <div class="impact-summary">
+                <p>Faster investor responses, fewer bottlenecks, and stronger governance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>The Market</h2>
+            <div class="market-quote">
+                <p>AI creates value in asset management when it removes friction from regulated workflows.</p>
+                <p>Most firms still rely on PDFs, inboxes, and disconnected systems to manage agreements. Termifi provides a living contract layer—allowing approved terms to be surfaced instantly while remaining anchored to the firm's authoritative contract record managed in Millie.</p>
+                <p class="market-stat">89% of businesses still lack a centralized contract system.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="solution">
+        <div class="container">
+            <h2>The Solution</h2>
+            <div class="solution-intro">
+                <p class="intro-large">Contract management inefficiencies create significant value leakage across asset management—up to 40% of contract value is lost, while 9 in 10 professionals struggle to locate agreements.</p>
+                <p class="intro-highlight">Termifi solves this with a contract intelligence layer designed for asset managers operating at scale.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Centralized Repository</h3>
+                    <p>Portfolio agreements, side letters, and amendments governed within Millie</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Clause Intelligence</h3>
+                    <p>AI-driven extraction and normalization of key terms across funds and vehicles</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Smart Alerts</h3>
+                    <p>Automated monitoring of renewals, notice periods, and obligations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Controlled Access</h3>
+                    <p>Permissioned views for business users and external stakeholders</p>
+                </div>
+            </div>
+            <div class="feature-note">
+                <p>All contract logic and version control remain managed within Millie.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark-section">
+        <div class="container">
+            <h2>Built for Lawyers,<br/>Used by Many</h2>
+            <p class="section-subtitle">Legal defines the rules. Everyone else operates within them.</p>
+            <div class="roles-grid">
+                <div class="role-card">
+                    <h3>Legal Teams</h3>
+                    <p>Configure approved language, fallback positions, and risk thresholds in Millie</p>
+                </div>
+                <div class="role-card">
+                    <h3>Asset Management</h3>
+                    <p>Retrieve answers without reopening agreements</p>
+                </div>
+                <div class="role-card">
+                    <h3>Compliance & Risk</h3>
+                    <p>Retain full auditability and evidence trails</p>
+                </div>
+            </div>
+            <div class="role-note">
+                <p>No shadow systems. No duplicated contracts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Why Termifi</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>Flexible flat fee pricing</h3>
+                    <p>Not taking a percentage of AUM</p>
+                </div>
+                <div class="why-card">
+                    <h3>No contract duplication</h3>
+                    <p>Always reflects the authoritative agreement record in Millie</p>
+                </div>
+                <div class="why-card">
+                    <h3>Retail-ready by design</h3>
+                    <p>Structured outputs for non-legal users</p>
+                </div>
+                <div class="why-card">
+                    <h3>Governance-first</h3>
+                    <p>Permissions, lineage, and controls embedded from the start</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="platform">
+        <div class="container">
+            <h2>How It Fits</h2>
+            <div class="how-it-fits">
+                <h3>Built on Millie</h3>
+                <p class="intro">Termifi is a dedicated access layer built on top of Millie, the enterprise contract platform already used by asset managers to govern agreements firmwide.</p>
+                <p class="list-title">This allows Termifi to:</p>
+                <ul>
+                    <li>Expose investor-relevant terms without distributing full contracts</li>
+                    <li>Stay synchronized with legal-approved source documents</li>
+                    <li>Maintain compliance, version control, and regulatory traceability</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Get Started</h2>
+            <p>Built for asset managers expanding retail access—without compromising control.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">View Live Demo</a>
+                <a href="#" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-text">© 2026 Termifi · Contract Intelligence Platform</div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
