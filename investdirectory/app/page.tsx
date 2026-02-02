@@ -11,6 +11,9 @@ export default function Home() {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showCookieBanner, setShowCookieBanner] = useState(false);
+  const [showChatWidget, setShowChatWidget] = useState(false);
+  const [bannerSubscribed, setBannerSubscribed] = useState(false);
+  const [footerSubscribed, setFooterSubscribed] = useState(false);
 
   // Check if user has already selected a role (persist across page loads)
   useEffect(() => {
@@ -38,9 +41,14 @@ export default function Home() {
     }, 400);
   };
 
-  const handleContactClick = (e: React.MouseEvent) => {
+  const handleBannerSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowContactModal(true);
+    setBannerSubscribed(true);
+  };
+
+  const handleFooterSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFooterSubscribed(true);
   };
 
   // Show role selector splash if no role selected
@@ -121,10 +129,30 @@ export default function Home() {
             </div>
           </div>
           <div className="nav-right">
-            <a href="#" onClick={handleContactClick} className="btn-contact">Contact</a>
+            <div className="nav-status">
+              <span className="status-dot"></span>
+              All Systems Operational
+            </div>
+            <a href="/contact" className="btn-contact">Contact</a>
           </div>
         </div>
       </nav>
+      
+      <div className="top-banner">
+        <div className="banner-content">
+          {bannerSubscribed ? (
+            <span className="subscribed-message">✓ Thanks for subscribing! We'll be in touch.</span>
+          ) : (
+            <>
+              <span>📬 Get product updates and industry insights</span>
+              <form className="banner-form" onSubmit={handleBannerSubscribe}>
+                <input type="email" placeholder="Enter your email" className="banner-input" required />
+                <button type="submit" className="banner-btn">Subscribe</button>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
       
       <section className="business-hero">
         <div className="hero-container">
@@ -142,7 +170,7 @@ export default function Home() {
               </p>
               <div className="hero-cta">
                 <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">View Demo</a>
-                <a href="#" onClick={handleContactClick} className="btn-hero-secondary">Get in Touch</a>
+                <a href="/contact" className="btn-hero-secondary">Get in Touch</a>
               </div>
             </div>
           </div>
@@ -365,7 +393,7 @@ export default function Home() {
           <p>Turn contracts into structured, actionable data — quickly.</p>
           <div className="cta-buttons">
             <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
-            <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact Us</a>
+            <a href="/contact" className="btn-secondary">Contact Us</a>
           </div>
         </div>
       </section>
@@ -375,17 +403,57 @@ export default function Home() {
           <div className="footer-left">
             <div className="footer-logo">Termfi</div>
             <div className="footer-copyright">© 2026 Termfi. Contract Intelligence Platform.</div>
+            <div className="footer-status">
+              <span className="status-dot"></span>
+              All Systems Operational
+            </div>
+          </div>
+          <div className="footer-center">
+            <div className="newsletter-signup">
+              <div className="newsletter-label">Stay Updated</div>
+              {footerSubscribed ? (
+                <div className="subscribed-message-footer">✓ Subscribed!</div>
+              ) : (
+                <form className="newsletter-form" onSubmit={handleFooterSubscribe}>
+                  <input type="email" placeholder="Enter your email" className="newsletter-input" required />
+                  <button type="submit" className="newsletter-btn">Subscribe</button>
+                </form>
+              )}
+            </div>
           </div>
           <div className="footer-right">
             <div className="footer-menu">
               <a href="#">Privacy</a>
               <a href="#">Terms</a>
               <a href="#">Security</a>
-              <a href="#" onClick={handleContactClick}>Contact</a>
+              <a href="/contact">Contact</a>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Chat Widget */}
+      <div className="chat-widget">
+        {showChatWidget && (
+          <div className="chat-popup">
+            <div className="chat-header">
+              <span>Chat with us</span>
+              <button className="chat-close" onClick={() => setShowChatWidget(false)}>×</button>
+            </div>
+            <div className="chat-body">
+              <div className="chat-offline">
+                <div className="chat-offline-icon">💬</div>
+                <p>We're currently offline</p>
+                <span>Leave a message and we'll get back to you within 24 hours.</span>
+                <a href="#" onClick={(e) => { e.preventDefault(); setShowChatWidget(false); setShowContactModal(true); }} className="chat-contact-btn">Send a Message</a>
+              </div>
+            </div>
+          </div>
+        )}
+        <button className="chat-trigger" onClick={() => setShowChatWidget(!showChatWidget)}>
+          <span className="chat-icon">💬</span>
+        </button>
+      </div>
 
       {showContactModal && <ContactModal onClose={() => setShowContactModal(false)} />}
     </>

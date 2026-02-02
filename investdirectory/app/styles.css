@@ -346,7 +346,7 @@ li::before {
   right: 0;
   background: var(--color-surface);
   border-bottom: none;
-  padding: 8px 0;
+  padding: 14px 0;
   z-index: 1000;
   box-shadow: var(--shadow);
 }
@@ -411,6 +411,24 @@ li::before {
   color: var(--color-text);
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #36b37e;
+  font-weight: 500;
+  padding: 6px 12px;
+  background: rgba(54, 179, 126, 0.1);
+  border-radius: 20px;
+}
+
 .btn-contact {
   background: var(--color-primary);
   color: #ffffff !important;
@@ -425,9 +443,84 @@ li::before {
   color: #ffffff !important;
 }
 
+/* Top Banner */
+.top-banner {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--color-primary);
+  padding: 14px var(--spacing-md);
+  z-index: 999;
+}
+
+.banner-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+.banner-content span {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.banner-form {
+  display: flex;
+  gap: 8px;
+}
+
+.banner-input {
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  width: 180px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.banner-input:focus {
+  outline: none;
+}
+
+.banner-btn {
+  padding: 6px 14px;
+  background: #ffffff;
+  color: var(--color-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease;
+}
+
+.banner-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.subscribed-message {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.subscribed-message-footer {
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 0;
+}
+
 /* Hero */
 .business-hero {
-  margin-top: 70px;
+  margin-top: 110px;
   padding: 80px var(--spacing-md) 70px;
   background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%);
   border-bottom: 1px solid var(--color-border);
@@ -1046,6 +1139,240 @@ li::before {
 .footer-menu a {
   font-size: 12px;
   color: var(--color-text-muted);
+}
+
+/* Footer Status Indicator */
+.footer-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: #36b37e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Newsletter Signup */
+.footer-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter-signup {
+  text-align: center;
+}
+
+.newsletter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+}
+
+.newsletter-input {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  width: 200px;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.newsletter-btn {
+  padding: 8px 16px;
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease;
+}
+
+.newsletter-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Chat Widget */
+.chat-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  z-index: 999;
+}
+
+.chat-trigger {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 82, 204, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-trigger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4);
+}
+
+.chat-icon {
+  font-size: 24px;
+}
+
+.chat-popup {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: chatSlideUp 0.2s ease;
+}
+
+@keyframes chatSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-header {
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.chat-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.chat-close:hover {
+  opacity: 1;
+}
+
+.chat-body {
+  padding: 24px;
+}
+
+.chat-offline {
+  text-align: center;
+}
+
+.chat-offline-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.chat-offline p {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.chat-offline span {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.chat-contact-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--color-primary);
+  color: #ffffff;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.chat-contact-btn:hover {
+  background: var(--color-primary-hover);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .footer-center {
+    order: -1;
+  }
+  
+  .footer-status {
+    justify-content: center;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-input {
+    width: 100%;
+  }
+  
+  .chat-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .chat-popup {
+    width: 290px;
+    right: -8px;
+  }
 }
 
 .footer-menu a:hover {
