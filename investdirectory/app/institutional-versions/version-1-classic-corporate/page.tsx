@@ -216,9 +216,9 @@ export default function Version1ClassicCorporate() {
         <div className="footer-container">
           <div className="footer-text">© 2026 Termifi · Contract Intelligence Platform</div>
           <div className="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Security</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/security">Security</a>
             <a href="#" onClick={handleContactClick}>Contact</a>
           </div>
         </div>

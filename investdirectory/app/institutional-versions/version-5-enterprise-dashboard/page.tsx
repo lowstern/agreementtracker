@@ -301,9 +301,9 @@ export default function Version5EnterpriseDashboard() {
           </div>
           <div className="footer-right">
             <div className="footer-links">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Security</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+              <a href="/security">Security</a>
               <a href="#" onClick={handleContactClick}>Contact</a>
             </div>
           </div>

@@ -300,9 +300,9 @@ export default function Version7BusinessApplication() {
           </div>
           <div className="footer-right">
             <div className="footer-menu">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Security</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+              <a href="/security">Security</a>
               <a href="#" onClick={handleContactClick}>Contact</a>
             </div>
           </div>

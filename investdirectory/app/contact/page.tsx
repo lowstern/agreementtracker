@@ -296,9 +296,9 @@ export default function ContactPage() {
           <div className="footer-right">
             <div className="footer-menu">
               <Link href="/">Home</Link>
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Security</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+              <a href="/security">Security</a>
             </div>
           </div>
         </div>

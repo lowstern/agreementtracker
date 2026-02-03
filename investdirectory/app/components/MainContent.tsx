@@ -334,9 +334,9 @@ export default function MainContent({ role }: MainContentProps) {
           </div>
           <div className="footer-right">
             <div className="footer-menu">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Security</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/terms">Terms</a>
+              <a href="/security">Security</a>
               <a href="/contact">Contact</a>
             </div>
           </div>
