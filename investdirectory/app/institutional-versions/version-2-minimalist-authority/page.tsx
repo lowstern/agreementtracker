@@ -21,7 +21,7 @@ export default function Version2MinimalistAuthority() {
         <div className="nav-container">
           <div className="logo">TERMIFI</div>
           <div className="nav-links">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
             <a href="#solution">Solution</a>
             <a href="#platform">Platform</a>
             <a href="#" onClick={handleContactClick}>Contact</a>
@@ -204,7 +204,7 @@ export default function Version2MinimalistAuthority() {
           <h2>Get Started</h2>
           <p>Built for asset managers expanding retail access—without compromising control.</p>
           <div className="cta-links">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">View Demo</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">View Demo</a>
             <a href="#" onClick={handleContactClick}>Contact</a>
           </div>
         </div>

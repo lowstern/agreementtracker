@@ -22,7 +22,7 @@ export default function Version9CorporatePlatform() {
           <div className="nav-left">
             <div className="logo">Termifi</div>
             <div className="nav-items">
-              <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+              <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
               <a href="#solution">Solution</a>
               <a href="#platform">Platform</a>
             </div>
@@ -279,7 +279,7 @@ export default function Version9CorporatePlatform() {
           <h2>Ready to Transform Your Contract Management?</h2>
           <p>Built for asset managers expanding retail access—without compromising control.</p>
           <div className="cta-actions">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
             <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact Sales</a>
           </div>
         </div>
