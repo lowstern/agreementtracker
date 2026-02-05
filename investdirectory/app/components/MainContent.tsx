@@ -34,7 +34,7 @@ export default function MainContent({ role }: MainContentProps) {
             <div className="logo">Termfi</div>
             <div className="nav-separator"></div>
             <div className="nav-menu">
-              <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+              <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
               <a href="#solution">Solution</a>
               <a href="#platform">Platform</a>
             </div>
@@ -80,7 +80,7 @@ export default function MainContent({ role }: MainContentProps) {
                 the financial and non-financial terms that matter, so teams can understand and act on what was actually agreed.
               </p>
               <div className="hero-cta">
-                <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">View Demo</a>
+                <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">View Demo</a>
                 <a href="/contact" className="btn-hero-secondary">Get in Touch</a>
               </div>
             </div>
@@ -303,7 +303,7 @@ export default function MainContent({ role }: MainContentProps) {
           <h2>Ready to Transform Your Contract Management?</h2>
           <p>Turn contracts into structured, actionable data — quickly.</p>
           <div className="cta-buttons">
-            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
             <a href="/contact" className="btn-secondary">Contact Us</a>
           </div>
         </div>

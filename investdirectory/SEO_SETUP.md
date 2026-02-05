@@ -141,7 +141,7 @@ Primary keywords already optimized for:
 
 - Sitemap: https://www.gettermfi.com/sitemap.xml
 - Robots.txt: https://www.gettermfi.com/robots.txt
-- Demo: https://agreement-tracker-frontend.onrender.com/
+- Demo: http://demo.gettermfi.com/
 
 ---
 

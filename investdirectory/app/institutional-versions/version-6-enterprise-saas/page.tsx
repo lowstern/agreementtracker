@@ -23,7 +23,7 @@ export default function Version6EnterpriseSaaS() {
             <div className="logo">Termifi</div>
           </div>
           <div className="nav-menu">
-            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
             <a href="#solution">Solution</a>
             <a href="#platform">Platform</a>
             <a href="#" onClick={handleContactClick} className="nav-cta">Contact</a>
@@ -273,7 +273,7 @@ export default function Version6EnterpriseSaaS() {
             <h2>Ready to Transform Your Contract Management?</h2>
             <p>Built for asset managers expanding retail access—without compromising control.</p>
             <div className="cta-actions">
-              <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+              <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
               <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact Sales</a>
             </div>
           </div>

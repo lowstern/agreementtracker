@@ -21,7 +21,7 @@ export default function Version1ClassicCorporate() {
         <div className="nav-container">
           <div className="logo">TERMIFI</div>
           <div className="nav-links">
-            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
             <a href="#solution">Solution</a>
             <a href="#platform">Platform</a>
             <a href="#" className="btn-nav" onClick={handleContactClick}>Contact</a>
@@ -38,7 +38,7 @@ export default function Version1ClassicCorporate() {
             expanding customized, retail-facing offerings—without duplicating agreements, processes, or controls.
           </p>
           <div className="hero-actions">
-            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
             <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact</a>
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function Version1ClassicCorporate() {
           <h2>Get Started</h2>
           <p>Built for asset managers expanding retail access—without compromising control.</p>
           <div className="cta-actions">
-            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
             <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact</a>
           </div>
         </div>
