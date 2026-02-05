@@ -22,7 +22,7 @@ export default function Version5EnterpriseDashboard() {
           <div className="nav-left">
             <div className="logo">Termifi</div>
             <div className="nav-menu">
-              <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+              <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
               <a href="#solution">Solution</a>
               <a href="#platform">Platform</a>
             </div>
@@ -288,7 +288,7 @@ export default function Version5EnterpriseDashboard() {
           </div>
           <p>Built for asset managers expanding retail access—without compromising control.</p>
           <div className="cta-actions">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">VIEW DEMO</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">VIEW DEMO</a>
             <a href="#" className="btn-secondary" onClick={handleContactClick}>CONTACT</a>
           </div>
         </div>

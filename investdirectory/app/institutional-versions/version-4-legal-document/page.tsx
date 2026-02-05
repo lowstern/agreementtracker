@@ -21,7 +21,7 @@ export default function Version4LegalDocument() {
         <div className="nav-container">
           <div className="logo">TERMIFI</div>
           <div className="nav-links">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
             <a href="#solution">Solution</a>
             <a href="#platform">Platform</a>
             <a href="#" onClick={handleContactClick}>Contact</a>
@@ -252,7 +252,7 @@ export default function Version4LegalDocument() {
             Built for asset managers expanding retail access—without compromising control.
           </p>
           <div className="footer-actions">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
             <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact</a>
           </div>
         </div>

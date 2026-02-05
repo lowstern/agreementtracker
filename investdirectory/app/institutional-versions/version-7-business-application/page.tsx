@@ -23,7 +23,7 @@ export default function Version7BusinessApplication() {
             <div className="logo">Termifi</div>
             <div className="nav-separator"></div>
             <div className="nav-menu">
-              <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer">Demo</a>
+              <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Demo</a>
               <a href="#solution">Solution</a>
               <a href="#platform">Platform</a>
             </div>
@@ -286,7 +286,7 @@ export default function Version7BusinessApplication() {
           <h2>Ready to Transform Your Contract Management?</h2>
           <p>Built for asset managers expanding retail access—without compromising control.</p>
           <div className="cta-buttons">
-            <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
+            <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">View Demo</a>
             <a href="#" className="btn-secondary" onClick={handleContactClick}>Contact Us</a>
           </div>
         </div>

@@ -277,7 +277,7 @@ export default function ContactPage() {
 
               <div className="success-actions">
                 <Link href="/" className="btn-primary">Return to Homepage</Link>
-                <a href="http://demo.gettermfi.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                <a href="https://agreement-tracker-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                   Explore Demo
                 </a>
               </div>

@@ -120,7 +120,7 @@ After deployment, you'll have:
 
 - **Render URL**: `https://gettermfi.onrender.com` (works immediately)
 - **Custom Domain**: `https://www.gettermfi.com` (requires DNS setup)
-- **Demo App**: `http://demo.gettermfi.com/` (your tracker demo)
+- **Demo App**: `https://agreement-tracker-frontend.onrender.com/` (your tracker demo)
 
 ## ⏱️ Expected Timeline
 
